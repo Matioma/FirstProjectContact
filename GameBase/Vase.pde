@@ -1,9 +1,9 @@
-class DemoBox extends GameObject  implements IDraggable, IDisplayable {
+class Vase extends GameObject  implements IDraggable, IDisplayable {
 
   boolean selected = false;
   color newColor =127;
 
-  DemoBox(PVector position) {
+  Vase(PVector position) {
     super(position);
     SetCollider(new BoxCollider(position, 30, 30));
   }

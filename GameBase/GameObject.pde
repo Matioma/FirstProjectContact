@@ -3,6 +3,9 @@ class GameObject implements Comparable<GameObject>{
   Collider collider;
   int layer=0;
   
+  GameObject(){
+  }
+  
   GameObject(PVector position){
    this.position = position;
   }
@@ -10,6 +13,7 @@ class GameObject implements Comparable<GameObject>{
   void SetCollider(Collider collider){
     this.collider = collider;
   }
+  
   
   int compareTo(GameObject anotherObject){
       return layer- anotherObject.layer;

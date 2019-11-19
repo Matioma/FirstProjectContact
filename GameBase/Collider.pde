@@ -1,6 +1,3 @@
-enum ColliderType {
-}
-
 class Collider implements ICollidable {  
 
   Collider() {
