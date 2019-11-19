@@ -5,10 +5,7 @@ class BoxCollider extends Collider{
   
   BoxCollider(PVector position, float colliderWidth, float colliderHeight){
     this.position = position;
-
-  }
-
-   
-  void close(){
+    colWidth = colliderWidth;
+    colHeight  = colliderHeight;
   }
 }

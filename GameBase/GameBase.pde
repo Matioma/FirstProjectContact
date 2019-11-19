@@ -1,9 +1,11 @@
 DemoBox box= new DemoBox(new PVector(200,200)); 
-DemoBox box2= new DemoBox(new PVector(450,200)); 
+DemoBox box2= new DemoBox(new PVector(210,200)); 
+
+
 
 void setup(){
   size (1280,720);
-
+  box2.collider = new CircleCollider(box2.position, 30);
 }
 
 void draw(){

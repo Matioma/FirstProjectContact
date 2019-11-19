@@ -5,16 +5,16 @@ class DemoBox extends GameObject  implements IDraggable {
 
   DemoBox(PVector position){
     super(position);
-    collider = new CircleCollider(position, 30);
+    collider = new BoxCollider(position, 30,30);
   }
   void display() {
     if (clicked) {
       position.x =mouseX;
       position.y =mouseY;
     }
-    circle(position.x,position.y, 30);
+    //circle(position.x,position.y, 30);
     //rectMode(CENTER);
-    //rect(position.x, position.y, 30, 30);
+    rect(position.x, position.y, 30, 30);
   }
 
   void Clicked() {

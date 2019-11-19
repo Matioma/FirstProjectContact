@@ -7,10 +7,4 @@ class CircleCollider extends Collider{
     this.position = position;
     this.radius = radius;
   }
-  
-  
-  void close(){
-  }
-
-
 }

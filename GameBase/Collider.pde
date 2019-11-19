@@ -10,96 +10,35 @@ class Collider implements ICollidable {
   boolean collided(BoxCollider _boxCollider) {
     try {
       BoxCollider boxCollider = (BoxCollider)this;
-      //BoxCollider boxCollider = (BoxCollider)this;
-      
-        //return rectRect(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h);
-        println("Box box collision");
-  
+      return rectRect(boxCollider, _boxCollider);
     }
     catch(Exception e) {
     }
 
     try {
       CircleCollider circleCollider = (CircleCollider)this;
-      if (circleCollider !=null) {
-        println("circle box collision");
-      }
+      return circleRect(circleCollider.position.x, circleCollider.position.y, circleCollider.radius, _boxCollider.position.x, _boxCollider.position.y, _boxCollider.colWidth, _boxCollider.colHeight);
     }
     catch(Exception e) {
     }
-    try {
-      PolygonCollider polygonCollider = (PolygonCollider)this;
-      if (polygonCollider !=null) {
-        println("polygon box collision");
-      }
-    }
-    catch(Exception e) {
-    }
-
     return false;
   }
+
   boolean collided(CircleCollider _circleCollider) {
     try {
       BoxCollider boxCollider = (BoxCollider)this;
-      //BoxCollider boxCollider = (BoxCollider)this;
-      if (boxCollider != null) {
-        println("Box circle collision");
-      }
+      return circleRect(_circleCollider.position.x, _circleCollider.position.y, _circleCollider.radius, boxCollider.position.x, boxCollider.position.y, boxCollider.colWidth, boxCollider.colHeight);
     }
     catch(Exception e) {
     }
-
     try {
       CircleCollider circleCollider = (CircleCollider)this;
       return circleCircle(circleCollider, _circleCollider);
     }
     catch(Exception e) {
     }
-    try {
-      PolygonCollider polygonCollider = (PolygonCollider)this;
-      if (polygonCollider !=null) {
-        println("polygon circle collision");
-      }
-    }
-    catch(Exception e) {
-    }
-
     return false;
   }
-
-
-  boolean collided(PolygonCollider _polygonCollider) {
-    try {
-      BoxCollider boxCollider = (BoxCollider)this;
-      //BoxCollider boxCollider = (BoxCollider)this;
-      if (boxCollider != null) {
-        println("Box polygon collision");
-      }
-    }
-    catch(Exception e) {
-    }
-
-    try {
-      CircleCollider circleCollider = (CircleCollider)this;
-      if (circleCollider !=null) {
-        println("circle polygon collision");
-      }
-    }
-    catch(Exception e) {
-    }
-    try {
-      PolygonCollider polygonCollider = (PolygonCollider)this;
-      if (polygonCollider !=null) {
-        println("polygon polygon collision");
-      }
-    }
-    catch(Exception e) {
-    }
-
-    return false;
-  }
-
-
 
   boolean circleCircle(CircleCollider circleCollider1, CircleCollider circleCollider2) {
     // get distance between the circle's centers
@@ -115,18 +54,43 @@ class Collider implements ICollidable {
     }
     return false;
   }
- 
-  
-  
+
+  boolean rectRect(BoxCollider box1, BoxCollider box2) {
+    return rectRect(box1.position.x, box1.position.y, box1.colWidth, box1.colHeight, box2.position.x, box2.position.y, box2.colWidth, bo2.colHeight);
+  }
+
   boolean rectRect(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h) {
-  // are the sides of one rectangle touching the other?
-  if (r1x + r1w >= r2x &&    // r1 right edge past r2 left
+    // are the sides of one rectangle touching the other?
+    if (r1x + r1w >= r2x &&    // r1 right edge past r2 left
       r1x <= r2x + r2w &&    // r1 left edge past r2 right
       r1y + r1h >= r2y &&    // r1 top edge past r2 bottom
       r1y <= r2y + r2h) {    // r1 bottom edge past r2 top
-        return true;
+      return true;
+    }
+    return false;
   }
-  return false;
-}
-  
+
+
+  boolean circleRect(float cx, float cy, float radius, float rx, float ry, float rw, float rh) {
+    // temporary variables to set edges for testing
+    float testX = cx;
+    float testY = cy;
+
+    // which edge is closest?
+    if (cx < rx)         testX = rx;      // test left edge
+    else if (cx > rx+rw) testX = rx+rw;   // right edge
+    if (cy < ry)         testY = ry;      // top edge
+    else if (cy > ry+rh) testY = ry+rh;   // bottom edge
+
+    // get distance from closest edges
+    float distX = cx-testX;
+    float distY = cy-testY;
+    float distance = sqrt( (distX*distX) + (distY*distY) );
+
+    // if the distance is less than the radius, collision!
+    if (distance <= radius) {
+      return true;
+    }
+    return false;
+  }
 }
