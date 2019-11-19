@@ -1,33 +1,32 @@
 class DemoBox extends GameObject  implements IDraggable, IDisplayable {
-  
+
   boolean selected = false;
-  
-  
-  DemoBox(PVector position){
+  color newColor =127;
+
+  DemoBox(PVector position) {
     super(position);
-    SetCollider(new BoxCollider(position, 30,30));
+    SetCollider(new BoxCollider(position, 30, 30));
   }
- 
-  
+
+
   void display() {
-    if (selected) {
-      //position.x =mouseX;
-      //position.y =mouseY;
-    }
+    push();
+    fill(newColor);
     rect(position.x, position.y, 30, 30);
+    pop();
   }
 
-  void followMouse(){
-    position.x = mouseX;
-    position.y = mouseY;
-    //collider.position.set(mouseX,mouseY);
+
+
+  void followMouse() {
+    position.x = mouseX - 15;
+    position.y = mouseY - 15;
   }
 
-  void clicked() {
-    selected = false;
+  void setLayer(int layer) {
+    super.layer = layer;
   }
-
-  void released() {
-    selected = true;
+  void setColor(color newColor) {
+    this.newColor = newColor;
   }
 }

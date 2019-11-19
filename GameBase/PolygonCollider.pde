@@ -1,4 +1,0 @@
-class PolygonCollider extends Collider{
-
-
-}

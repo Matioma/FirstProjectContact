@@ -1,4 +1,4 @@
-interface IDisplayable{
+interface IDisplayable {
   void display();
-  //void SetLayer();
+  void setLayer(int layer);
 }

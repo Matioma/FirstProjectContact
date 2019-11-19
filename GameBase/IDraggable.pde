@@ -1,4 +1,4 @@
 interface IDraggable{
-  void clicked(); 
-  void released();
+
+  void followMouse();
 }

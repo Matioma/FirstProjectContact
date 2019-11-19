@@ -20,8 +20,8 @@ class PlayerController {
     }
     
     if(draggableObject != null){
-      GameObject test = (GameObject)draggableObject;
-      test.position.set(mouseX,mouseY);
+      //GameObject test = (GameObject)draggableObject;
+      draggableObject.followMouse();
       //(GameObject)draggableObject.position.set(mouseX,mouseY);
     }
   }
