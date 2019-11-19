@@ -3,7 +3,6 @@ enum ColliderType {
 
 class Collider implements ICollidable {  
 
-
   Collider() {
   }
 
@@ -40,23 +39,41 @@ class Collider implements ICollidable {
     return false;
   }
 
+  boolean isMouseOver() {
+    try {
+      BoxCollider boxCollider = (BoxCollider)this;
+      return pointRect(mouseX, mouseY, boxCollider.position.x, boxCollider.position.y, boxCollider.colWidth, boxCollider.colHeight);
+    }
+    catch(Exception e) {
+    }
+    try {
+      CircleCollider circleCollider = (CircleCollider)this;
+      return pointCircle(mouseX, mouseY, circleCollider.position.x, circleCollider.position.y, circleCollider.radius);
+    }
+    catch(Exception e) {
+    }
+    return false;
+  }
+
+
+
+  // Utility
   boolean circleCircle(CircleCollider circleCollider1, CircleCollider circleCollider2) {
-    // get distance between the circle's centers
-    // use the Pythagorean Theorem to compute the distance
     float distX = circleCollider1.position.x - circleCollider2.position.x;
     float distY = circleCollider1.position.y - circleCollider2.position.y;
     float distance = sqrt( (distX*distX) + (distY*distY) );
 
-    // if the distance is less than the sum of the circle's
-    // radii, the circles are touching!
+
     if (distance <= circleCollider1.radius+circleCollider2.radius) {
       return true;
     }
     return false;
   }
 
+
+
   boolean rectRect(BoxCollider box1, BoxCollider box2) {
-    return rectRect(box1.position.x, box1.position.y, box1.colWidth, box1.colHeight, box2.position.x, box2.position.y, box2.colWidth, bo2.colHeight);
+    return rectRect(box1.position.x, box1.position.y, box1.colWidth, box1.colHeight, box2.position.x, box2.position.y, box2.colWidth, box2.colHeight);
   }
 
   boolean rectRect(float r1x, float r1y, float r1w, float r1h, float r2x, float r2y, float r2w, float r2h) {
@@ -89,6 +106,34 @@ class Collider implements ICollidable {
 
     // if the distance is less than the radius, collision!
     if (distance <= radius) {
+      return true;
+    }
+    return false;
+  }
+
+  boolean pointRect(float px, float py, float rx, float ry, float rw, float rh) {
+
+    // is the point inside the rectangle's bounds?
+    if (px >= rx &&        // right of the left edge AND
+      px <= rx + rw &&   // left of the right edge AND
+      py >= ry &&        // below the top AND
+      py <= ry + rh) {   // above the bottom
+      return true;
+    }
+    return false;
+  }
+
+  boolean pointCircle(float px, float py, float cx, float cy, float r) {
+
+    // get distance between the point and circle's center
+    // using the Pythagorean Theorem
+    float distX = px - cx;
+    float distY = py - cy;
+    float distance = sqrt( (distX*distX) + (distY*distY) );
+
+    // if the distance is less than the circle's
+    // radius the point is inside!
+    if (distance <= r) {
       return true;
     }
     return false;

@@ -1,5 +1,4 @@
 interface IDraggable{
-  
-  void Clicked(); 
-  void Released();
+  void clicked(); 
+  void released();
 }

@@ -1,27 +1,33 @@
-class DemoBox extends GameObject  implements IDraggable {
-  private boolean clicked = false;
-
-  Collider collider;
-
+class DemoBox extends GameObject  implements IDraggable, IDisplayable {
+  
+  boolean selected = false;
+  
+  
   DemoBox(PVector position){
     super(position);
-    collider = new BoxCollider(position, 30,30);
+    SetCollider(new BoxCollider(position, 30,30));
   }
+ 
+  
   void display() {
-    if (clicked) {
-      position.x =mouseX;
-      position.y =mouseY;
+    if (selected) {
+      //position.x =mouseX;
+      //position.y =mouseY;
     }
-    //circle(position.x,position.y, 30);
-    //rectMode(CENTER);
     rect(position.x, position.y, 30, 30);
   }
 
-  void Clicked() {
-    clicked = true;
+  void followMouse(){
+    position.x = mouseX;
+    position.y = mouseY;
+    //collider.position.set(mouseX,mouseY);
   }
 
-  void Released() {
-    clicked = false;
+  void clicked() {
+    selected = false;
+  }
+
+  void released() {
+    selected = true;
   }
 }

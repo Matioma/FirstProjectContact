@@ -1,5 +1,5 @@
 interface ICollidable{
   boolean collided(BoxCollider box);
   boolean collided(CircleCollider circle);
-  boolean collided(PolygonCollider polygon);
+  boolean isMouseOver();
 }
