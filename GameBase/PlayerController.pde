@@ -1,37 +1,33 @@
 class PlayerController {
 
   private final World worldRef;
-
-
-  private boolean isMousePressed=false;
-  private IDraggable draggableObject=null;
+  private IInteractable interactedObject = null;
 
   PlayerController() {
     worldRef = null;
   }
-
   PlayerController(World _worldRef) {
     this.worldRef = _worldRef;
   }
 
   void update() {
-    if (isMousePressed && draggableObject ==null) {
-      draggableObject =worldRef.GetPointedObject();
-    }
-    
-    if(draggableObject != null){
-      //GameObject test = (GameObject)draggableObject;
-      draggableObject.followMouse();
-      //(GameObject)draggableObject.position.set(mouseX,mouseY);
+    if (interactedObject!= null) {
+      interactedObject.onDragged();
     }
   }
-
 
   void handleMousePressed() {
-    isMousePressed = true;
+    if (interactedObject ==null) {
+      interactedObject = worldRef.getClickedObject();
+      if (interactedObject !=null) {
+        interactedObject.onClick();
+      }
+    }
   }
   void handleMouseReleased() {
-    isMousePressed = false;
-    draggableObject = null;
+    if (interactedObject !=null) {
+      interactedObject.onRelease();
+      interactedObject = null;
+    }
   }
 }

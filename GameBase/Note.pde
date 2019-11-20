@@ -1,4 +1,4 @@
-class Note extends GameObject implements IDisplayable,IClickable{
+class Note extends GameObject implements IDisplayable,IInteractable{
 
   Note(){
     super();
@@ -15,7 +15,13 @@ class Note extends GameObject implements IDisplayable,IClickable{
     pop();
   }
   
-  void setLayer(int i){
-    
+  void onClick(){
+    println("Yay the note has been clicked");
+  }
+  void onRelease(){
+    println("Yay the note has been released");
+  }  
+  void onDragged(){
+    //println("Yay the note has been dragged");
   }
 }

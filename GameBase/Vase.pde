@@ -1,4 +1,4 @@
-class Vase extends GameObject  implements IDraggable, IDisplayable {
+class Vase extends GameObject  implements IDisplayable, IInteractable {
 
   boolean selected = false;
   color newColor =127;
@@ -8,7 +8,6 @@ class Vase extends GameObject  implements IDraggable, IDisplayable {
     SetCollider(new BoxCollider(position, 30, 30));
   }
 
-
   void display() {
     push();
     fill(newColor);
@@ -16,16 +15,21 @@ class Vase extends GameObject  implements IDraggable, IDisplayable {
     pop();
   }
 
-
-
   void followMouse() {
     position.x = mouseX - 15;
     position.y = mouseY - 15;
   }
-
-  void setLayer(int layer) {
-    super.layer = layer;
+  
+  void onClick(){
+    println("Yay the vase has been clicked");
   }
+  void onRelease(){
+    println("Yay the vase has been released");
+  }  
+  void onDragged(){
+    followMouse();
+  }
+
   void setColor(color newColor) {
     this.newColor = newColor;
   }

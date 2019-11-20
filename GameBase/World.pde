@@ -2,15 +2,10 @@ import java.util.Collections;
 
 class World {
   PlayerController playerController;
-
-  ArrayList<IDisplayable> displayableObject = new ArrayList<IDisplayable>();
   ArrayList<GameObject> sceneObjects = new ArrayList<GameObject>();
 
-
   World() {
-
     playerController = new PlayerController(this);
-
 
     sceneObjects.add(new Vase(new PVector(width/2-width/7, height/2-30)));
     Vase box =(Vase)sceneObjects.get(0);
@@ -36,27 +31,31 @@ class World {
         objectToDisplay.display();
       }
     }
+    debugColliders(false);
   }
-
-
-  IDraggable GetPointedObject() {
-    for (int i= sceneObjects.size()-1; i>=0; i--) {
-      GameObject obj = sceneObjects.get(i);
-      if (obj.collider.isMouseOver()) {
-        try {
-          IDraggable draggableObj = (IDraggable)obj;
-          //println("gg");
-          if (draggableObj!=null)
-            return draggableObj;
-        }
-        catch(Exception e) {
+  
+  
+  IInteractable getClickedObject(){
+    for(GameObject sceneObject: sceneObjects){
+      if(sceneObject.collider.isMouseOver()){
+        try{
+          IInteractable clickedObject = (IInteractable)sceneObject;
+          return clickedObject;    
+        }catch(Exception e){
+          println("Failed to cast to clicked object");
         }
       }
     }
     return null;
   }
 
-
+  void debugColliders(boolean debug) {
+    if (debug) {
+      for ( GameObject obj : sceneObjects) {
+        obj.collider.displayCollider();
+      }
+    }
+  }
   void drawScene1() {
     push();
     fill(#DE9F00);

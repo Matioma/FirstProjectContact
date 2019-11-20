@@ -14,8 +14,11 @@ class GameObject implements Comparable<GameObject>{
     this.collider = collider;
   }
   
-  
   int compareTo(GameObject anotherObject){
       return layer- anotherObject.layer;
   } 
+  
+  void setLayer(int layer){
+    this.layer = layer; 
+  }
 }

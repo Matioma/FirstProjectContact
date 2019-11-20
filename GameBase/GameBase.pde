@@ -1,5 +1,3 @@
-
-ArrayList<IDisplayable> displayableObject = new ArrayList<IDisplayable>();
 World world;
 
 void setup(){

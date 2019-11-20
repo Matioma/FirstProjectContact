@@ -2,6 +2,10 @@ class Collider implements ICollidable {
 
   Collider() {
   }
+  
+  void displayCollider(){
+    
+  }
 
   boolean collided(BoxCollider _boxCollider) {
     try {
@@ -59,7 +63,6 @@ class Collider implements ICollidable {
     float distX = circleCollider1.position.x - circleCollider2.position.x;
     float distY = circleCollider1.position.y - circleCollider2.position.y;
     float distance = sqrt( (distX*distX) + (distY*distY) );
-
 
     if (distance <= circleCollider1.radius+circleCollider2.radius) {
       return true;

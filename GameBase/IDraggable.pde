@@ -1,3 +1,0 @@
-interface IDraggable{
-  void followMouse();
-}
