@@ -1,32 +1,40 @@
-class GameObject implements Comparable<GameObject>{ 
+class GameObject implements Comparable<GameObject> { 
   PVector position;
   Collider collider;
   int layer=0;
   PImage img;
-  float imgWidth,imgHeight;
-  
-  
-  GameObject(){
+  float imgWidth, imgHeight;
+
+
+  GameObject() {
   }
-  
-  GameObject(PVector position){
-   this.position = position;
+
+  GameObject(PVector position) {
+    this.position = position;
   }
-  
-  GameObject(PVector position, String path){
-   this.position = position;
-   img =loadImage(path);
+  GameObject(PVector position, float _width,float _height) {
+    this(position);
+    imgWidth = _width;
+    imgHeight = _height;
   }
-  
-  void SetCollider(Collider collider){
+  GameObject(PVector position, String path) {
+    this(position);
+    img =loadImage(path);
+  }
+  GameObject(PVector position, float _width,float _height, String path) {
+    this(position,_width,_height);
+    //imgWidth = _width;
+    //imgHeight = _height;
+    img =loadImage(path);
+  }
+
+  void SetCollider(Collider collider) {
     this.collider = collider;
   }
-  
-  int compareTo(GameObject anotherObject){
-      return layer- anotherObject.layer;
-  } 
-  
-  void setLayer(int layer){
-    this.layer = layer; 
+  void setLayer(int layer) {
+    this.layer = layer;
   }
+  int compareTo(GameObject anotherObject) {
+    return layer- anotherObject.layer;
+  } 
 }

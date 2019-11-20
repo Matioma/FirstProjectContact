@@ -1,13 +1,10 @@
 class Scene {
-
-
   ArrayList<GameObject> sceneObjects;
 
 
   Scene(ArrayList<GameObject> scene) {
     sceneObjects = scene;
   }
-
 
   void display() {
     background(255);
