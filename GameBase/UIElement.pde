@@ -1,74 +1,22 @@
-class UIElement extends GameObject implements IDisplayable, IInteractable {
-  boolean draggingEnabled =true;
-  boolean clickable =false;
-  GameObject targetObjectToOverlap  = null;
-
+class UIElement extends InteractableObject {
 
   UIElement(PVector position) {
     super(position);
-    collider = new BoxCollider(position, 1, 1);
-    imgHeight =10;
-    imgWidth=10;
   }
-
   UIElement(PVector position, String filePath) {
     super(position, filePath);
-    SetCollider(new BoxCollider(position, 30, 30));
-    imgHeight = 40;
-    imgWidth = 40;
   }
   UIElement(PVector position, float _width, float _height) {
-    super(position);
-    imgHeight = _height;
-    imgWidth = _width;
-    SetCollider(new BoxCollider(position, _width, _height));
+    super(position,_width,_height);
   }
-
   UIElement(PVector position, float _width, float _height, String filePath) {
-    super(position, filePath);
-    imgHeight = _height;
-    imgWidth = _width;
-    SetCollider(new BoxCollider(position, _width, _height));
-  }
-
-  void enableDragging() {
-    draggingEnabled = true;
-  }
-
-  void disableDragging() {
-    draggingEnabled = false;
-  }
-  
-  void setClickable(){
-    clickable = true;
-  }
-  void setTargetCollider(GameObject _targetObject){
-    targetObjectToOverlap = _targetObject;
-  }
-
-  void display() {
-    push();
-    if (img!=null) {
-      image(img, position.x, position.y, imgWidth, imgHeight);
-    } else {
-      fill(127);
-      rect(position.x, position.y, imgWidth, imgHeight);
-    }
-    pop();
-  }
-
-  void followMouse() {
-    if (draggingEnabled) {
-      position.x = mouseX - imgWidth/2;
-      position.y = mouseY - imgHeight/2;
-    }
+    super(position,_width,_height, filePath);
   }
 
   void onClick() {
-    if(clickable){
+    if(isClickable){
       world.setSceneNumber(1);
-    }
-    
+    } 
   }
   void onDragged() {
     followMouse();
@@ -80,12 +28,11 @@ class UIElement extends GameObject implements IDisplayable, IInteractable {
         this.position.set(targetObjectToOverlap.position);
         try{
           UIElement buttonElement = (UIElement)targetObjectToOverlap;
-          buttonElement.setClickable();
-          this.setClickable();
+          buttonElement.setClickable(true);
+          this.setClickable(true);
         }catch(Exception e){
           
         }
-        
       }
     }
   }
