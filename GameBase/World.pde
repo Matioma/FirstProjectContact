@@ -1,9 +1,8 @@
 import java.util.Collections;
 
 class World {
-  public int sceneIndex =1;
+  public int sceneIndex =0;
 
-  //public Scene[] scene ;
   ArrayList<Scene> scenes = new ArrayList<Scene>(); 
 
   PlayerController playerController;
@@ -28,7 +27,6 @@ class World {
     catch(Exception e) {
       println("Failed to displat a scene with index");
     }
-    
   }
 
 
@@ -61,18 +59,30 @@ class World {
     return null;
   }
 
-  void debugColliders(boolean debug) {
-    if (debug) {
-      for ( GameObject obj : sceneObjects) {
-        obj.collider.displayCollider();
-      }
-    }
-  }
+  void setupScene0() {
+    sceneObjects = new ArrayList<GameObject>();
+    UIElement element;
 
 
+    sceneObjects.add(new UIElement(new PVector(width/3, height/2), width/5,60));
+    element = (UIElement)sceneObjects.get(0);
+    element.disableDragging();
+    element.setLayer(-5);
+    
+    sceneObjects.add(new UIElement(new PVector(width/5, height/4), width/5, 30, "Data/Text_so_you_want_to_play.png"));
+    element = (UIElement)sceneObjects.get(1);
+    element.disableDragging();
+    element.setLayer(0);
+    
+    sceneObjects.add(new UIElement(new PVector(width/2, height/4), width/5, 30, "Data/Play.png"));
+    element = (UIElement)sceneObjects.get(2);
+    element.setLayer(1);
+    
+    
+    element = (UIElement)sceneObjects.get(2);
+    element.setTargetCollider(sceneObjects.get(0));
+    
 
-  void setupScene0(){
-     sceneObjects = new ArrayList<GameObject>();
 
 
     Collections.sort(sceneObjects);
@@ -100,40 +110,10 @@ class World {
     Collections.sort(sceneObjects);
     scenes.add(new Scene(sceneObjects));
   }
-  
-
-  void drawScene1() {
-    background(255);
-    push();
-    fill(#DE9F00);
-    rect(width/2-width/5, height/2, width/5, 30); 
-    pop();
-
-
-    for ( GameObject obj : sceneObjects) {
-      IDisplayable objectToDisplay = (IDisplayable)obj;
-      if (obj !=null) {
-        objectToDisplay.display();
-      }
-    }
-    debugColliders(false);
-  }
 
   void setSceneNumber(int scene) {
     sceneIndex = scene;
   }
-
-
-  void drawScene2() {
-    push();
-
-
-    //background(255);    
-    String message = "Default Text";
-    rect(width/4, height/4, width/2, height/2);
-    text(message, width/4, height/2);
-
-
-    pop();
-  }
+  
+  
 }
