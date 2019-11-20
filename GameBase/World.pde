@@ -123,7 +123,7 @@ class World {
 
   void setupScene3() {
     sceneObjects = new ArrayList<GameObject>();
-    Safe  safe= new Safe();
+   // Safe  safe= new Safe();
     UIElement element;
 
     sceneObjects.add(new UIElement(new PVector(width/3+60, height/2), 60, 60, "Data/number_1.png"));

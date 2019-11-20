@@ -1,27 +1,27 @@
-abstract class StaticObject extends GameObject implements IDisplayable, IInteractable {
+abstract class InteractableObject extends GameObject implements IDisplayable, IInteractable {
   boolean isDraggable =true;
   boolean isClickable =false;
   
   GameObject targetObjectToOverlap  = null;
 
-  StaticObject(PVector position) {
+  InteractableObject(PVector position) {
     super(position);
     collider = new BoxCollider(position, 10, 10);
     imgHeight =10;
     imgWidth=10;
   }
   
-  StaticObject(PVector position, float _width, float _height) {
+  InteractableObject(PVector position, float _width, float _height) {
     super(position,_width, _height);
     SetCollider(new BoxCollider(position, _width, _height));
   }
 
-  StaticObject(PVector position, String filePath) {
+  InteractableObject(PVector position, String filePath) {
     super(position,40,40,filePath);
     SetCollider(new BoxCollider(position, 40, 40));
   }
   
-  StaticObject(PVector position, float _width, float _height, String filePath) {
+  InteractableObject(PVector position, float _width, float _height, String filePath) {
     super(position,_width,_height, filePath);
     SetCollider(new BoxCollider(position, _width, _height));
   }

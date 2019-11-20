@@ -11,7 +11,6 @@ class UIElement extends GameObject implements IDisplayable, IInteractable {
     imgWidth=10;
   }
 
-
   UIElement(PVector position, String filePath) {
     super(position, filePath);
     SetCollider(new BoxCollider(position, 30, 30));
