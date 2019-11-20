@@ -1,13 +1,22 @@
 class Scene {
   ArrayList<GameObject> sceneObjects;
-
+  private PImage background;
 
   Scene(ArrayList<GameObject> scene) {
     sceneObjects = scene;
   }
 
+  void setBackground(String path){
+    background = loadImage(path);
+  }
+  
   void display() {
-    background(255);
+    
+    if(background !=null){
+      image(background,0,0, width,height);
+    }else{
+      background(255);
+    }
     /*push();
     fill(#DE9F00);
     rect(width/2-width/5, height/2, width/5, 30); 

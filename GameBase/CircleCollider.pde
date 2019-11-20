@@ -10,6 +10,7 @@ class CircleCollider extends Collider{
   
   @Override void displayCollider(){
     push();
+    strokeWeight(2);
     stroke(204, 102, 0);
     circle(position.x, position.y,radius*2);
     pop();
