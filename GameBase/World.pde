@@ -10,6 +10,9 @@ class World {
   PlayerController playerController;
   ArrayList<GameObject> sceneObjects = new ArrayList<GameObject>();
 
+
+  GameObject fireObject =null;
+
   World() {
     playerController = new PlayerController(this);
 
@@ -124,6 +127,14 @@ class World {
     interactable.disableDragging();
     interactable.setClickable(true);
     interactable.setSceneToOpen(4);
+    
+    sceneObjects.add(new UIElement(new PVector(396.6, 384.6), 55, 55, "Data/firePlace.jpg"));
+    interactable = (InteractableObject)sceneObjects.get(4);
+    interactable.setLayer(12);
+    interactable.disableDragging();
+    interactable.setClickable(false);
+    fireObject = interactable;
+    //interactable.setSceneToOpen(4);
 
 
     Collections.sort(sceneObjects);
@@ -139,18 +150,15 @@ class World {
     sceneObjects = new ArrayList<GameObject>();
     UIElement element;
 
-
-
-    sceneObjects.add(new UIElement(new PVector(width/4, height/4), width/2, height/2));
+    sceneObjects.add(new UIElement(new PVector(width/4, height/4), width/2, height/2, "Data/Note_scene.png"));
     sceneObjects.get(0).setLayer(1);
     element =  (UIElement)sceneObjects.get(0);
     element.disableDragging();
 
-
     Collections.sort(sceneObjects); 
 
     Scene scene = new Scene(sceneObjects);
-    scene.setBackground("Data/LivingRoom.png");
+    scene.setBackground("Data/LivingRoom_Dark.png");
     scenes.add(scene);
   }
 
@@ -209,6 +217,7 @@ class World {
     element.setSceneToOpen(1);
 
 
+    //setup what places the numbers can be placed int
     UIElement elementRef;
     elementRef = (UIElement)sceneObjects.get(0);
     elementRef.addOverlapTargets(sceneObjects.get(4));
@@ -247,22 +256,26 @@ class World {
     UIElement element;
 
 
-    sceneObjects.add(new UIElement(new PVector(width/3+60, height/2), 36, 36, "Data/number_1.png"));
+    sceneObjects.add(new UIElement(new PVector(width/3+60, height/2), 36, 36, "Data/Letter_I.png"));
     element = (UIElement)sceneObjects.get(0);  
     element.setLayer(15);
-    element.setValue(1);
-    sceneObjects.add(new UIElement(new PVector(width/3+120, height/2), 36, 36, "Data/number_2.png"));
+    element.setValue(2);
+    element.setRepresentNumber(false);
+    sceneObjects.add(new UIElement(new PVector(width/3+120, height/2), 36, 36, "Data/Letter_F.png"));
     element = (UIElement)sceneObjects.get(1);
     element.setLayer(15);
-    element.setValue(2);
-    sceneObjects.add(new UIElement(new PVector(width/3+180, height/2), 36, 36, "Data/number_3.png"));
+    element.setValue(1);
+    element.setRepresentNumber(false);
+    sceneObjects.add(new UIElement(new PVector(width/3+180, height/2), 36, 36, "Data/Letter_E.png"));
     element = (UIElement)sceneObjects.get(2);
     element.setLayer(15);
-    element.setValue(3);
-    sceneObjects.add(new UIElement(new PVector(width/3+240, height/2), 36, 36, "Data/number_4.png"));
+    element.setValue(4);
+    element.setRepresentNumber(false);
+    sceneObjects.add(new UIElement(new PVector(width/3+240, height/2), 36, 36, "Data/Letter_R.png"));
     element = (UIElement)sceneObjects.get(3);
     element.setLayer(20);
-    element.setValue(4);
+    element.setValue(3);
+    element.setRepresentNumber(false);
 
     //println(map(12, 0, 1600, 0, 1280));
     sceneObjects.add(new UIElement(new PVector(531, 490), 36, 36));
@@ -287,7 +300,9 @@ class World {
     element.setLayer(10);
 
 
-    sceneObjects.add(new UIElement(new PVector(width/4, height/4), width/2, height/2));
+
+    ///Square
+    sceneObjects.add(new UIElement(new PVector(width/4, height/4), width/2, height/2, "Data/Bottles_scene.png"));
     sceneObjects.get(8).setLayer(0);
     element =  (UIElement)sceneObjects.get(8);
     element.disableDragging();
@@ -322,23 +337,24 @@ class World {
     Collections.sort(sceneObjects); 
 
     Scene scene = new Scene(sceneObjects);
-    scene.setBackground("Data/LivingRoom.png");
+    scene.setBackground("Data/LivingRoom_Dark.png");
     scenes.add(scene);
   }
 
+  //open safe
   void setupScene5() {
     sceneObjects = new ArrayList<GameObject>();
     UIElement element;
 
 
-    println(map(70,0,1920,0,1280));
-    println(map(119,0,1080,0,720));
-    sceneObjects.add(new UIElement(new PVector(622.6, 533.3),46.6, 79.3, "Data/transparent.png"));
+    println(map(70, 0, 1920, 0, 1280));
+    println(map(119, 0, 1080, 0, 720));
+    sceneObjects.add(new UIElement(new PVector(622.6, 533.3), 46.6, 79.3, "Data/transparent.png"));
     sceneObjects.get(0).setLayer(1);
     element =  (UIElement)sceneObjects.get(0);
     element.disableDragging();
-    
-    
+
+
 
 
     Collections.sort(sceneObjects); 
@@ -350,10 +366,16 @@ class World {
 
   void setSceneNumber(int scene) {
     sceneIndex = scene;
+    //playerController.
   }
 
-  void foundPill() {
+  void SafeOpened() {
     setSceneNumber(5);
+  }
+  void DisableFire() {
+    if (fireObject !=null) {
+      scenes.get(1).sceneObjects.remove(fireObject);
+    }
   }
 
   float map(float s, float a1, float a2, float b1, float b2)
