@@ -14,7 +14,9 @@ class Safe extends InteractableObject {
   }
 
   void onClick() {
-    world.setSceneNumber(3);
+    //world.setSceneNumber(3);
+    openScene();
+
   }
 
   void onRelease() {

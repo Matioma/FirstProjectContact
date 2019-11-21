@@ -29,7 +29,8 @@ class UIElement extends InteractableObject {
 
   void onClick() {
     if (isClickable) {
-      world.setSceneNumber(1);
+      openScene();
+      //world.setSceneNumber(1);
     }
     if(targetPlaced !=null){
       UIElement element = (UIElement)targetPlaced;
@@ -68,7 +69,9 @@ class UIElement extends InteractableObject {
         try {
           UIElement buttonElement = (UIElement)targetObjectToOverlap;
           buttonElement.setClickable(true);
+          buttonElement.disableDragging();
           this.setClickable(true);
+          this.disableDragging();
         }
         catch(Exception e) {
         }

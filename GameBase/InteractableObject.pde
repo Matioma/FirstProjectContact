@@ -1,9 +1,13 @@
 abstract class InteractableObject extends GameObject implements IDisplayable, IInteractable {
   boolean isDraggable =true;
   boolean isClickable =false;
-  
+
   GameObject targetObjectToOverlap  = null;
   ArrayList<GameObject> overlapTargets = new ArrayList<GameObject>();
+
+
+  private int sceneToOpen = -1;
+
 
   InteractableObject(PVector position) {
     super(position);
@@ -11,19 +15,19 @@ abstract class InteractableObject extends GameObject implements IDisplayable, II
     imgHeight =10;
     imgWidth=10;
   }
-  
+
   InteractableObject(PVector position, float _width, float _height) {
-    super(position,_width, _height);
+    super(position, _width, _height);
     SetCollider(new BoxCollider(position, _width, _height));
   }
 
   InteractableObject(PVector position, String filePath) {
-    super(position,40,40,filePath);
+    super(position, 40, 40, filePath);
     SetCollider(new BoxCollider(position, 40, 40));
   }
-  
+
   InteractableObject(PVector position, float _width, float _height, String filePath) {
-    super(position,_width,_height, filePath);
+    super(position, _width, _height, filePath);
     SetCollider(new BoxCollider(position, _width, _height));
   }
 
@@ -34,16 +38,19 @@ abstract class InteractableObject extends GameObject implements IDisplayable, II
   void disableDragging() {
     isDraggable = false;
   }
-  
-  void setClickable(boolean value){
+
+  void setClickable(boolean value) {
     isClickable = value;
   }
-  
-  void setTargetCollider(GameObject _targetObject){
+  void setSceneToOpen(int sceneNumber){
+    sceneToOpen = sceneNumber;
+  }
+
+  void setTargetCollider(GameObject _targetObject) {
     targetObjectToOverlap = _targetObject;
   }
-  
-  void addOverlapTargets(GameObject _targetObject){
+
+  void addOverlapTargets(GameObject _targetObject) {
     overlapTargets.add(_targetObject);
   }
 
@@ -57,11 +64,19 @@ abstract class InteractableObject extends GameObject implements IDisplayable, II
     }
     pop();
   }
-  
+
   void followMouse() {
     if (isDraggable) {
       position.x = mouseX - imgWidth/2;
       position.y = mouseY - imgHeight/2;
+    }
+  }
+
+  void openScene() {
+    if (sceneToOpen>=0 && sceneToOpen<world.scenes.size()) {
+      world.sceneIndex = sceneToOpen;
+    }else{
+      println("Tried to open non existent scene");
     }
   }
 }
