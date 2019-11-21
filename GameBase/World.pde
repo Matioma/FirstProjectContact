@@ -3,6 +3,8 @@ import java.util.Collections;
 class World {
   public int sceneIndex =0;
 
+
+
   ArrayList<Scene> scenes = new ArrayList<Scene>(); 
 
   PlayerController playerController;
@@ -93,20 +95,21 @@ class World {
   //Living Room
   void setupScene1() {
     sceneObjects = new ArrayList<GameObject>();
-    UIElement element;
+    //UIElement element;
 
-    sceneObjects.add(new Vase(new PVector(width/2-width/7, height/2-30), 50, 50, "Data/vase_vector.png"));//vase
+    //println(map(647, 0, 1920, 0, 1280));
+    //println(map(701, 0, 1080, 0, 720));
+    sceneObjects.add(new Vase(new PVector(420, 470), 50, 50, "Data/vase_vector.png"));//vase
     sceneObjects.get(0).setLayer(1);
-    sceneObjects.add(new Note(new PVector(width/2-width/7, height/2-30)));//note
+
+
+    sceneObjects.add(new Note(new PVector(440, 495)));//note
     sceneObjects.get(1).setLayer(-2);
 
 
     sceneObjects.add(new Safe(new PVector(50, 50), 120, 120));//note
     sceneObjects.get(2).setLayer(-2);
 
-    //sceneObjects.add(new UIElement(new PVector(120, 120), 120, 50));
-    //sceneObjects.get(2).setLayer(0);
-    //element = (UIElement)sceneObjects.get(2);
 
 
     Collections.sort(sceneObjects);
@@ -122,6 +125,8 @@ class World {
     sceneObjects = new ArrayList<GameObject>();
     UIElement element;
 
+
+
     sceneObjects.add(new UIElement(new PVector(width/4, height/4), width/2, height/2));
     sceneObjects.get(0).setLayer(1);
     element =  (UIElement)sceneObjects.get(0);
@@ -131,6 +136,7 @@ class World {
     Collections.sort(sceneObjects); 
 
     Scene scene = new Scene(sceneObjects);
+    scene.setBackground("Data/LivingRoom.png");
     scenes.add(scene);
   }
 
@@ -140,38 +146,78 @@ class World {
     // Safe  safe= new Safe();
     UIElement element;
 
-    sceneObjects.add(new UIElement(new PVector(width/3+60, height/2), 60, 60, "Data/number_1.png"));
-    element = (UIElement)sceneObjects.get(0);
+    sceneObjects.add(new UIElement(new PVector(width/3+60, height/2), 36, 36, "Data/number_1.png"));
+    element = (UIElement)sceneObjects.get(0);  
     element.setLayer(5);
-    sceneObjects.add(new UIElement(new PVector(width/3+120, height/2), 60, 60, "Data/number_2.png"));
+    element.setValue(1);
+    sceneObjects.add(new UIElement(new PVector(width/3+120, height/2), 36, 36, "Data/number_2.png"));
     element = (UIElement)sceneObjects.get(1);
     element.setLayer(6);
-    sceneObjects.add(new UIElement(new PVector(width/3+180, height/2), 60, 60, "Data/number_3.png"));
+    element.setValue(2);
+    sceneObjects.add(new UIElement(new PVector(width/3+180, height/2), 36, 36, "Data/number_3.png"));
     element = (UIElement)sceneObjects.get(2);
     element.setLayer(7);
-    sceneObjects.add(new UIElement(new PVector(width/3+240, height/2), 60, 60, "Data/number_4.png"));
+    element.setValue(3);
+    sceneObjects.add(new UIElement(new PVector(width/3+240, height/2), 36, 36, "Data/number_4.png"));
     element = (UIElement)sceneObjects.get(3);
     element.setLayer(8);
+    element.setValue(4);
 
-    //println(map(46, 0, 1600, 0, 1280));
+    //println(map(12, 0, 1600, 0, 1280));
     sceneObjects.add(new UIElement(new PVector(531, 490), 36, 36));
     element = (UIElement)sceneObjects.get(4);
     element.disableDragging();
+    element.setNumberIndex(0);
     element.setLayer(0);
-    sceneObjects.add(new UIElement(new PVector(width/3+120, 120), 36, 36));
+    sceneObjects.add(new UIElement(new PVector(531+36+9.6, 490), 36, 36));
     element = (UIElement)sceneObjects.get(5);
     element.disableDragging();
+    element.setNumberIndex(1);
     element.setLayer(0);
-    sceneObjects.add(new UIElement(new PVector(width/3+180, 120), 36, 36));
+    sceneObjects.add(new UIElement(new PVector(531+2*(36+9.6), 490), 36, 36));
     element = (UIElement)sceneObjects.get(6);
     element.disableDragging();
+    element.setNumberIndex(2);
     element.setLayer(0);
-    sceneObjects.add(new UIElement(new PVector(width/3+240, 120), 36, 36));
+    sceneObjects.add(new UIElement(new PVector(531+3*(36+9.6), 490), 36, 36));
     element = (UIElement)sceneObjects.get(7);
     element.disableDragging();
+    element.setNumberIndex(3);
     element.setLayer(0);
 
+
+    UIElement elementRef;
+    elementRef = (UIElement)sceneObjects.get(0);
+    elementRef.addOverlapTargets(sceneObjects.get(4));
+    elementRef.addOverlapTargets(sceneObjects.get(5));
+    elementRef.addOverlapTargets(sceneObjects.get(6));
+    elementRef.addOverlapTargets(sceneObjects.get(7));
+
+    elementRef = (UIElement)sceneObjects.get(1);
+    elementRef.addOverlapTargets(sceneObjects.get(4));
+    elementRef.addOverlapTargets(sceneObjects.get(5));
+    elementRef.addOverlapTargets(sceneObjects.get(6));
+    elementRef.addOverlapTargets(sceneObjects.get(7));
+
+    elementRef = (UIElement)sceneObjects.get(2);
+    elementRef.addOverlapTargets(sceneObjects.get(4));
+    elementRef.addOverlapTargets(sceneObjects.get(5));
+    elementRef.addOverlapTargets(sceneObjects.get(6));
+    elementRef.addOverlapTargets(sceneObjects.get(7));
+
+    elementRef = (UIElement)sceneObjects.get(3);
+    elementRef.addOverlapTargets(sceneObjects.get(4));
+    elementRef.addOverlapTargets(sceneObjects.get(5));
+    elementRef.addOverlapTargets(sceneObjects.get(6));
+    elementRef.addOverlapTargets(sceneObjects.get(7));
+
+    //sceneObjects.get(1).addOverlapTargets()
+
+
     Collections.sort(sceneObjects);
+
+
+
 
     Scene scene = new Scene(sceneObjects);
     scene.setBackground("Data/Safe.jpeg");
@@ -181,7 +227,10 @@ class World {
   void setSceneNumber(int scene) {
     sceneIndex = scene;
   }
-
+  
+  void foundPill(){
+    println("Victory");
+  }
 
   float map(float s, float a1, float a2, float b1, float b2)
   {

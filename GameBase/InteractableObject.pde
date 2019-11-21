@@ -3,6 +3,7 @@ abstract class InteractableObject extends GameObject implements IDisplayable, II
   boolean isClickable =false;
   
   GameObject targetObjectToOverlap  = null;
+  ArrayList<GameObject> overlapTargets = new ArrayList<GameObject>();
 
   InteractableObject(PVector position) {
     super(position);
@@ -37,8 +38,13 @@ abstract class InteractableObject extends GameObject implements IDisplayable, II
   void setClickable(boolean value){
     isClickable = value;
   }
+  
   void setTargetCollider(GameObject _targetObject){
     targetObjectToOverlap = _targetObject;
+  }
+  
+  void addOverlapTargets(GameObject _targetObject){
+    overlapTargets.add(_targetObject);
   }
 
   void display() {
