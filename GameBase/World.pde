@@ -3,6 +3,7 @@ import java.util.Collections;
 class World {
   public int sceneIndex =0;
 
+  boolean startedTheGame =false;
 
 
   ArrayList<Scene> scenes = new ArrayList<Scene>(); 
@@ -114,20 +115,25 @@ class World {
     sceneObjects.get(1).setLayer(-2);
     object.setSceneToOpen(2);
 
-    sceneObjects.add(new Safe(new PVector(396.6, 384.6), 55, 55));
+    sceneObjects.add(new Safe(new PVector(396.6, 384.6), 55, 55, "Data/transparent.png"));
     InteractableObject interactable = (InteractableObject)sceneObjects.get(2);
     sceneObjects.get(2).setLayer(-2);
     interactable.setSceneToOpen(3);
 
 
+
+    println(map(1488, 0, 1920, 0, 1280));
+    println(map(287, 0, 1080, 0, 720));
+    println(map(374, 0, 1920, 0, 1280));
+    println(map(100, 0, 1080, 0, 720));
     //Bottles puzzle
-    sceneObjects.add(new UIElement(new PVector(500, 600), 150, 120));
+    sceneObjects.add(new UIElement(new PVector(992, 191.33), 249.3, 66.6, "Data/transparent.png"));
     interactable = (InteractableObject)sceneObjects.get(3);
     interactable.setLayer(-2);
     interactable.disableDragging();
     interactable.setClickable(true);
     interactable.setSceneToOpen(4);
-    
+
     sceneObjects.add(new UIElement(new PVector(396.6, 384.6), 55, 55, "Data/firePlace.png"));
     interactable = (InteractableObject)sceneObjects.get(4);
     interactable.setLayer(12);
@@ -347,8 +353,8 @@ class World {
     UIElement element;
 
 
-    println(map(70, 0, 1920, 0, 1280));
-    println(map(119, 0, 1080, 0, 720));
+    //println(map(70, 0, 1920, 0, 1280));
+    //println(map(119, 0, 1080, 0, 720));
     sceneObjects.add(new UIElement(new PVector(622.6, 533.3), 46.6, 79.3, "Data/transparent.png"));
     sceneObjects.get(0).setLayer(1);
     element =  (UIElement)sceneObjects.get(0);
@@ -366,6 +372,7 @@ class World {
 
   void setSceneNumber(int scene) {
     sceneIndex = scene;
+    sceneChanged();
     //playerController.
   }
 
@@ -378,8 +385,12 @@ class World {
     }
   }
 
-  float map(float s, float a1, float a2, float b1, float b2)
-  {
-    return b1 + (s-a1)*(b2-b1)/(a2-a1);
+  void sceneChanged() {
+    file2.play();
   }
+
+  /*float map(float s, float a1, float a2, float b1, float b2)
+   {
+   return b1 + (s-a1)*(b2-b1)/(a2-a1);
+   }*/
 }

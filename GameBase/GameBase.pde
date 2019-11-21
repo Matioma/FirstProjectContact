@@ -1,4 +1,9 @@
+import processing.sound.*;
+
 World world;
+SoundFile file1;
+SoundFile file2;
+
 int[] password = {3,1,2,4};
 int[] fireWord = {1,2,3,4};
 
@@ -9,6 +14,10 @@ int[] currentlyFireValues = new int[4];
 void setup(){
   size (1280,720);
   world = new World();
+  
+  file1 = new SoundFile(this, "Sounds/1.1.wav");
+  file2 = new SoundFile(this, "Sounds/1.6.wav");
+  ///file.play();
 }
 
 void draw(){

@@ -74,7 +74,7 @@ abstract class InteractableObject extends GameObject implements IDisplayable, II
 
   void openScene() {
     if (sceneToOpen>=0 && sceneToOpen<world.scenes.size()) {
-      world.sceneIndex = sceneToOpen;
+      world.setSceneNumber(sceneToOpen);
     }else{
       println("Tried to open non existent scene");
     }
