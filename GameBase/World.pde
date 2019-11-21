@@ -128,7 +128,7 @@ class World {
     interactable.setClickable(true);
     interactable.setSceneToOpen(4);
     
-    sceneObjects.add(new UIElement(new PVector(396.6, 384.6), 55, 55, "Data/firePlace.jpg"));
+    sceneObjects.add(new UIElement(new PVector(396.6, 384.6), 55, 55, "Data/firePlace.png"));
     interactable = (InteractableObject)sceneObjects.get(4);
     interactable.setLayer(12);
     interactable.disableDragging();
