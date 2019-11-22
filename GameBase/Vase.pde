@@ -16,10 +16,8 @@ class Vase extends InteractableObject {
   }
 
   @Override void onClick() {
-    println("Yay the vase has been clicked");
   }
   @Override void onRelease() {
-    println("Yay the vase has been released");
   }  
   @Override void onDragged() {
     followMouse();

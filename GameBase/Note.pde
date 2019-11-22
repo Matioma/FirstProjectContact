@@ -12,14 +12,13 @@ class Note extends InteractableObject {
 
 
   @Override void onClick() {
-    world.setSceneNumber(2);
+    world.OpenScene(targetScene);
   }
   @Override void onRelease() {
   }  
   @Override void onDragged() {
   }
   @Override void onHover(){
-    println("note");
   }
   @Override void onHoverEnd(){
   }

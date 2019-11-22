@@ -14,8 +14,7 @@ class Safe extends InteractableObject {
   }
 
   @Override void onClick() {
-    //world.setSceneNumber(3);
-    openScene();
+    world.OpenScene(targetScene);
   }
 
   @Override void onRelease() {
@@ -25,7 +24,7 @@ class Safe extends InteractableObject {
   }
 
   @Override void onHover() {
-    println("safe");
+//println("safe");
   }
   @Override void onHoverEnd() {
   }

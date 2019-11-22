@@ -65,7 +65,7 @@ class UIElement extends InteractableObject {
 
   @Override void onClick() {
     if (isClickable) {
-      openScene();
+      world.OpenScene(targetScene);
     }
     if (targetPlaced !=null) {
       UIElement element = (UIElement)targetPlaced;

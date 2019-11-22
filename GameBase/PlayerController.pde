@@ -1,10 +1,7 @@
 class PlayerController {
-
   private final World worldRef;
   private IInteractable interactedObject = null;
   private IInteractable hoveredObject =null;
-
-  //boolean pressed =false;
 
   PlayerController() {
     worldRef = null;
@@ -37,14 +34,10 @@ class PlayerController {
   }
 
   void handleMousePressed() {
-    if (world.sceneIndex == 2) {
+    if(world.currentSceneKey ==Levels.BOTTLE_PUZZLE ||world.currentSceneKey ==Levels.READ_NOTE){
       if (!pointRect(mouseX, mouseY, width/4, height/4, width/2, height/2)) {
-        world.setSceneNumber(1);
-      }
-    }
-    if (world.sceneIndex == 4) {
-      if (!pointRect(mouseX, mouseY, width/4, height/4, width/2, height/2)) {
-        world.setSceneNumber(1);
+        world.OpenScene(Levels.LIVING_ROOM);
+        
       }
     }
 

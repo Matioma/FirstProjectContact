@@ -1,12 +1,13 @@
 class Timer {
-  float secondsToEnd = 300;
-  float secondsLeft =300;
+  float secondsToEnd = 60;
+  float secondsLeft;
 
   float gameStartTime;
   float currentFrameTime;
 
   boolean timerStarted = false;
 
+    
   Timer() {
     gameStartTime = millis();
     secondsLeft =300;
