@@ -28,8 +28,8 @@ abstract class InteractableObject extends GameObject implements IDisplayable, II
     super(position, _width, _height, filePath);
     SetCollider(new BoxCollider(position, _width, _height));
   }
-  InteractableObject(PVector position, float _width,float _height, String pathDefault, String pathHighlighted) {
-    super(position,_width,_height,pathDefault,pathHighlighted);
+  InteractableObject(PVector position, float _width, float _height, String pathDefault, String pathHighlighted) {
+    super(position, _width, _height, pathDefault, pathHighlighted);
     SetCollider(new BoxCollider(position, _width, _height));
   }
 
@@ -77,12 +77,11 @@ abstract class InteractableObject extends GameObject implements IDisplayable, II
   void openScene() {
     if (sceneToOpen>=0 && sceneToOpen<world.scenes.size()) {
       world.setSceneNumber(sceneToOpen);
+      if (sceneToOpen ==1) {
+        timer.start();
+      }
     } else {
       println("Tried to open non existent scene");
     }
   }
-  
-  
-  
-
 }

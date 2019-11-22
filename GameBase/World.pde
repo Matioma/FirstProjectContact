@@ -26,6 +26,8 @@ class World {
 
   void update() {
     playerController.update();
+    timer.update();
+    println(timer.getTimeString());
   }
 
   void display() {
@@ -76,7 +78,7 @@ class World {
     sceneObjects = new ArrayList<GameObject>();
     UIElement element;
 
-    sceneObjects.add(new UIElement(new PVector(width/3, height/2), width/5, 160));
+    sceneObjects.add(new UIElement(new PVector(width/3, height/2), width/5, 30));
     element = (UIElement)sceneObjects.get(0);
     element.disableDragging();
     element.setLayer(-5);
@@ -108,7 +110,7 @@ class World {
   void setupScene1() {
     sceneObjects = new ArrayList<GameObject>();
 
-    sceneObjects.add(new Vase(new PVector(420, 470), 50, 50, "Data/vase_vector.png", "Data/vase_vector_outline.png"));//vase
+    sceneObjects.add(new Vase(new PVector(433, 470), 25, 50, "Data/vase_vector.png", "Data/vase_vector_outline.png"));//vase
     sceneObjects.get(0).setLayer(1);
 
 

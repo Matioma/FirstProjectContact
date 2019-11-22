@@ -11,7 +11,6 @@ class Scene {
   }
   
   void display() {
-    
     if(background !=null){
       image(background,0,0, width,height);
     }else{

@@ -12,6 +12,7 @@ int[] fireWord = {1, 2, 3, 4};
 int[] currentlyPlacedValues = new int[4];
 int[] currentlyFireValues = new int[4];
 
+Timer timer = new Timer();
 
 void setup() {
   size (1280, 720);
