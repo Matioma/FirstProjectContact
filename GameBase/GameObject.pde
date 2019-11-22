@@ -2,8 +2,10 @@ class GameObject implements Comparable<GameObject> {
   PVector position;
   Collider collider;
   int layer=0;
-  PImage img;
+  PImage textureToDisplay;
   float imgWidth, imgHeight;
+  
+  PImage defaultTexture,highlightedTexture;
 
   GameObject() {
   }
@@ -18,12 +20,22 @@ class GameObject implements Comparable<GameObject> {
   }
   GameObject(PVector position, String path) {
     this(position);
-    img =loadImage(path);
+    defaultTexture = loadImage(path);
+    textureToDisplay =defaultTexture;
   }
   GameObject(PVector position, float _width,float _height, String path) {
     this(position,_width,_height);
-    img =loadImage(path);
+    defaultTexture = loadImage(path);
+    textureToDisplay =defaultTexture;
   }
+   GameObject(PVector position, float _width,float _height, String pathDefault, String pathHighlighted) {
+    this(position,_width,_height);
+    defaultTexture = loadImage(pathDefault);
+    textureToDisplay =defaultTexture;
+    highlightedTexture = loadImage(pathHighlighted);
+  }
+
+
 
   void SetCollider(Collider collider) {
     this.collider = collider;

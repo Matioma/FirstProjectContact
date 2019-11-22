@@ -1,4 +1,3 @@
-import java.util.Collections;
 
 class World {
   public int sceneIndex =0;
@@ -10,7 +9,7 @@ class World {
 
   PlayerController playerController;
   ArrayList<GameObject> sceneObjects = new ArrayList<GameObject>();
-
+  //HashMap<String,Scene> scenesData =new HashMap<String,Scene>();
 
   GameObject fireObject =null;
 
@@ -36,36 +35,6 @@ class World {
     catch(Exception e) {
       println("Failed to displat a scene with index");
     }
-  }
-
-
-  IInteractable getClickedObject() {
-    Scene currentScene;
-
-    try {
-      currentScene = scenes.get(sceneIndex);
-    }
-    catch(Exception e) {
-      println("Scene with Index does not exist");
-      currentScene = null;
-    }
-
-    if (currentScene != null) {
-
-      for (int i=currentScene.sceneObjects.size()-1; i>=0; i--) {
-        GameObject obj = currentScene.sceneObjects.get(i);
-        if (obj.collider.isMouseOver()) {
-          try {
-            IInteractable clickedObject = (IInteractable)obj;
-            return clickedObject;
-          }
-          catch(Exception e) {
-            println("Failed to cast to clicked object");
-          }
-        }
-      }
-    }
-    return null;
   }
   
   IInteractable getHoveredObject() {
@@ -103,6 +72,7 @@ class World {
 
   //Main Menu
   void setupScene0() {
+    //ArrayList<GameObject> Objects = new ArrayList<GameObject>();
     sceneObjects = new ArrayList<GameObject>();
     UIElement element;
 
@@ -127,8 +97,10 @@ class World {
 
     Collections.sort(sceneObjects);
     Scene scene = new Scene(sceneObjects);
-
+    
     scenes.add(scene);
+    
+    //scenesData.put("MainMenu",new Scene(sceneObjects));
   }
 
 
@@ -136,7 +108,7 @@ class World {
   void setupScene1() {
     sceneObjects = new ArrayList<GameObject>();
 
-    sceneObjects.add(new Vase(new PVector(420, 470), 50, 50, "Data/vase_vector.png"));//vase
+    sceneObjects.add(new Vase(new PVector(420, 470), 50, 50, "Data/vase_vector.png", "Data/vase_vector_outline.png"));//vase
     sceneObjects.get(0).setLayer(1);
 
 
@@ -170,6 +142,7 @@ class World {
     Scene scene = new Scene(sceneObjects);
     scene.setBackground("Data/LivingRoom.png");
     scenes.add(scene);
+    //scenesData.put("LivingRoom",new Scene(sceneObjects));
   }
 
 
@@ -188,6 +161,8 @@ class World {
     Scene scene = new Scene(sceneObjects);
     scene.setBackground("Data/LivingRoom_Dark.png");
     scenes.add(scene);
+    
+    //scenesData.put("LivingRoom",new Scene(sceneObjects));
   }
 
   //Safe

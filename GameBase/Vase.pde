@@ -11,6 +11,9 @@ class Vase extends InteractableObject {
   Vase(PVector position, float _width, float _height, String filePath) {
     super(position, _width, _height, filePath);
   }
+  Vase(PVector position, float _width, float _height, String pathDefault, String pathHighlighted) {
+    super(position, _width, _height, pathDefault, pathHighlighted);
+  }
 
   @Override void onClick() {
     println("Yay the vase has been clicked");
@@ -22,9 +25,14 @@ class Vase extends InteractableObject {
     followMouse();
   }
   @Override void onHover() {
-    println("Mouse hovered on Vase");
+    println("vase");
+    if (highlightedTexture!=null) {
+      textureToDisplay = highlightedTexture;
+    }
   }
   @Override void onHoverEnd() {
-    println("Mouse hover end on Vase");
+    if (defaultTexture!=null) {
+      textureToDisplay = defaultTexture;
+    }
   }
 }

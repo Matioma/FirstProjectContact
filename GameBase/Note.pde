@@ -12,16 +12,14 @@ class Note extends InteractableObject {
 
 
   @Override void onClick() {
-    println("Yay the note has been clicked");
     world.setSceneNumber(2);
   }
   @Override void onRelease() {
-    println("Yay the note has been released");
   }  
   @Override void onDragged() {
   }
   @Override void onHover(){
-    println("Mouse hovered on Vase");
+    println("note");
   }
   @Override void onHoverEnd(){
   }

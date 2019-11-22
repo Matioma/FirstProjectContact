@@ -25,7 +25,7 @@ class Safe extends InteractableObject {
   }
 
   @Override void onHover() {
-    println("Mouse hovered on Vase");
+    println("safe");
   }
   @Override void onHoverEnd() {
   }

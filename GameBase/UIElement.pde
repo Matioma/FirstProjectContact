@@ -133,7 +133,7 @@ class UIElement extends InteractableObject {
     }
   }
   @Override void onHover() {
-    println("Mouse hovered on uiELement");
+    println("ui Element");
   }
   @Override void onHoverEnd() {
   }

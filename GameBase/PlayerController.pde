@@ -18,8 +18,6 @@ class PlayerController {
       interactedObject.onDragged();
     }
 
-
-
     //Hovering mechanics
     if (hoveredObject ==null) {
       hoveredObject = this.worldRef.getHoveredObject();
@@ -50,9 +48,8 @@ class PlayerController {
       }
     }
 
-    //pressed = false;
     if (interactedObject ==null) {
-      interactedObject = worldRef.getClickedObject();
+      interactedObject = worldRef.getHoveredObject();
       if (interactedObject !=null) {
         interactedObject.onClick();
       }
@@ -67,7 +64,6 @@ class PlayerController {
   }
 
   boolean pointRect(float px, float py, float rx, float ry, float rw, float rh) {
-
     // is the point inside the rectangle's bounds?
     if (px >= rx &&        // right of the left edge AND
       px <= rx + rw &&   // left of the right edge AND

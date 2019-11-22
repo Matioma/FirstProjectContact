@@ -28,6 +28,10 @@ abstract class InteractableObject extends GameObject implements IDisplayable, II
     super(position, _width, _height, filePath);
     SetCollider(new BoxCollider(position, _width, _height));
   }
+  InteractableObject(PVector position, float _width,float _height, String pathDefault, String pathHighlighted) {
+    super(position,_width,_height,pathDefault,pathHighlighted);
+    SetCollider(new BoxCollider(position, _width, _height));
+  }
 
   void enableDragging() {
     isDraggable = true;
@@ -54,8 +58,8 @@ abstract class InteractableObject extends GameObject implements IDisplayable, II
 
   void display() {
     push();
-    if (img!=null) {
-      image(img, position.x, position.y, imgWidth, imgHeight);
+    if (textureToDisplay!=null) {
+      image(textureToDisplay, position.x, position.y, imgWidth, imgHeight);
     } else {
       fill(127);
       rect(position.x, position.y, imgWidth, imgHeight);
