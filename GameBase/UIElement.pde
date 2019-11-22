@@ -52,7 +52,7 @@ class UIElement extends InteractableObject {
     if (representNumber) {
       if (overlapTargets.size()>0) {
         for (GameObject obj : overlapTargets) {
-          if (this.collider.collided((BoxCollider)obj.collider)) {
+          if (this.collider.collided(obj.collider)) {
             UIElement element = (UIElement)obj;
             if (!element.hasValue) {
               element.hasValue = true;
@@ -70,7 +70,7 @@ class UIElement extends InteractableObject {
     }else{
        if (overlapTargets.size()>0) {
         for (GameObject obj : overlapTargets) {
-          if (this.collider.collided((BoxCollider)obj.collider)) {
+          if (this.collider.collided(obj.collider)) {
             UIElement element = (UIElement)obj;
             if (!element.hasValue) {
               element.hasValue = true;
@@ -91,7 +91,7 @@ class UIElement extends InteractableObject {
     }
 
     if (targetObjectToOverlap !=null) {
-      if (this.collider.collided((BoxCollider)targetObjectToOverlap.collider)) {
+      if (this.collider.collided(targetObjectToOverlap.collider)) {
         this.position.set(targetObjectToOverlap.position);
         try {
           UIElement buttonElement = (UIElement)targetObjectToOverlap;

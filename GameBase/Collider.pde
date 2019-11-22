@@ -1,10 +1,22 @@
-class Collider implements ICollidable {  
+abstract class Collider implements ICollidable {  
 
-  Collider() {
+  void displayCollider() {
   }
-  
-  void displayCollider(){
-    
+
+  boolean collided(Collider _collider) {
+    try {
+      BoxCollider overlapedCollider = (BoxCollider)_collider;
+      return collided(overlapedCollider);
+    }
+    catch(Exception e) {
+    }
+    try {
+      CircleCollider overlapedCollider = (CircleCollider)_collider;
+      return collided(overlapedCollider);
+    }
+    catch(Exception e) {
+    }
+    return false;
   }
 
   boolean collided(BoxCollider _boxCollider) {
@@ -14,7 +26,6 @@ class Collider implements ICollidable {
     }
     catch(Exception e) {
     }
-
     try {
       CircleCollider circleCollider = (CircleCollider)this;
       return circleRect(circleCollider.position.x, circleCollider.position.y, circleCollider.radius, _boxCollider.position.x, _boxCollider.position.y, _boxCollider.colWidth, _boxCollider.colHeight);
@@ -56,8 +67,6 @@ class Collider implements ICollidable {
     return false;
   }
 
-
-
   // Utility
   boolean circleCircle(CircleCollider circleCollider1, CircleCollider circleCollider2) {
     float distX = circleCollider1.position.x - circleCollider2.position.x;
@@ -69,8 +78,6 @@ class Collider implements ICollidable {
     }
     return false;
   }
-
-
 
   boolean rectRect(BoxCollider box1, BoxCollider box2) {
     return rectRect(box1.position.x, box1.position.y, box1.colWidth, box1.colHeight, box2.position.x, box2.position.y, box2.colWidth, box2.colHeight);
@@ -86,7 +93,6 @@ class Collider implements ICollidable {
     }
     return false;
   }
-
 
   boolean circleRect(float cx, float cy, float radius, float rx, float ry, float rw, float rh) {
     // temporary variables to set edges for testing
@@ -112,8 +118,6 @@ class Collider implements ICollidable {
   }
 
   boolean pointRect(float px, float py, float rx, float ry, float rw, float rh) {
-
-    // is the point inside the rectangle's bounds?
     if (px >= rx &&        // right of the left edge AND
       px <= rx + rw &&   // left of the right edge AND
       py >= ry &&        // below the top AND
@@ -124,15 +128,10 @@ class Collider implements ICollidable {
   }
 
   boolean pointCircle(float px, float py, float cx, float cy, float r) {
-
-    // get distance between the point and circle's center
-    // using the Pythagorean Theorem
     float distX = px - cx;
     float distY = py - cy;
     float distance = sqrt( (distX*distX) + (distY*distY) );
 
-    // if the distance is less than the circle's
-    // radius the point is inside!
     if (distance <= r) {
       return true;
     }
