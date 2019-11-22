@@ -17,11 +17,6 @@ class Scene {
     }else{
       background(255);
     }
-    /*push();
-    fill(#DE9F00);
-    rect(width/2-width/5, height/2, width/5, 30); 
-    pop();*/
-
 
     for ( GameObject obj : sceneObjects) {
       IDisplayable objectToDisplay = (IDisplayable)obj;

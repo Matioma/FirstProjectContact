@@ -5,7 +5,6 @@ class GameObject implements Comparable<GameObject> {
   PImage img;
   float imgWidth, imgHeight;
 
-
   GameObject() {
   }
 
@@ -23,8 +22,6 @@ class GameObject implements Comparable<GameObject> {
   }
   GameObject(PVector position, float _width,float _height, String path) {
     this(position,_width,_height);
-    //imgWidth = _width;
-    //imgHeight = _height;
     img =loadImage(path);
   }
 

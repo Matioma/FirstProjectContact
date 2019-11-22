@@ -1,28 +1,32 @@
 class Safe extends InteractableObject {
- 
+
   Safe(PVector position) {
     super(position);
   }
   Safe(PVector position, float _width, float _height) {
-    super(position,_width,_height);
+    super(position, _width, _height);
   }
   Safe(PVector position, String filePath) {
     super(position, filePath);
   }
   Safe(PVector position, float _width, float _height, String filePath) {
-    super(position,_width,_height, filePath);
+    super(position, _width, _height, filePath);
   }
 
-  void onClick() {
+  @Override void onClick() {
     //world.setSceneNumber(3);
     openScene();
-
   }
 
-  void onRelease() {
-  
+  @Override void onRelease() {
   }
 
-  void onDragged() {
+  @Override void onDragged() {
+  }
+
+  @Override void onHover() {
+    println("Mouse hovered on Vase");
+  }
+  @Override void onHoverEnd() {
   }
 }

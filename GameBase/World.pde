@@ -67,6 +67,38 @@ class World {
     }
     return null;
   }
+  
+  IInteractable getHoveredObject() {
+    Scene currentScene;
+    try {
+      currentScene = scenes.get(sceneIndex);
+    }
+    catch(Exception e) {
+      println("Scene with Index does not exist");
+      currentScene = null;
+    }
+
+    if (currentScene != null) {
+      for (int i=currentScene.sceneObjects.size()-1; i>=0; i--) {
+        GameObject obj = currentScene.sceneObjects.get(i);
+        if (obj.collider.isMouseOver()) {
+          try {
+            IInteractable clickedObject = (IInteractable)obj;
+            return clickedObject;
+          }
+          catch(Exception e) {
+            println("Failed to cast to clicked object");
+          }
+        }
+      }
+    }
+    return null;
+  }
+  
+  boolean isObjectHovered(GameObject hoveredObject){
+    return hoveredObject.collider.isMouseOver();
+  }
+  
 
 
   //Main Menu
@@ -74,7 +106,7 @@ class World {
     sceneObjects = new ArrayList<GameObject>();
     UIElement element;
 
-    sceneObjects.add(new UIElement(new PVector(width/3, height/2), width/5, 60));
+    sceneObjects.add(new UIElement(new PVector(width/3, height/2), width/5, 160));
     element = (UIElement)sceneObjects.get(0);
     element.disableDragging();
     element.setLayer(-5);
@@ -104,8 +136,6 @@ class World {
   void setupScene1() {
     sceneObjects = new ArrayList<GameObject>();
 
-    /*println(map(678, 0, 1920, 0, 1280));
-     println(map(577, 0, 1080, 0, 720));*/
     sceneObjects.add(new Vase(new PVector(420, 470), 50, 50, "Data/vase_vector.png"));//vase
     sceneObjects.get(0).setLayer(1);
 
@@ -120,12 +150,6 @@ class World {
     sceneObjects.get(2).setLayer(-2);
     interactable.setSceneToOpen(3);
 
-
-
-    println(map(1488, 0, 1920, 0, 1280));
-    println(map(287, 0, 1080, 0, 720));
-    println(map(374, 0, 1920, 0, 1280));
-    println(map(100, 0, 1080, 0, 720));
     //Bottles puzzle
     sceneObjects.add(new UIElement(new PVector(992, 191.33), 249.3, 66.6, "Data/transparent.png"));
     interactable = (InteractableObject)sceneObjects.get(3);
@@ -140,8 +164,6 @@ class World {
     interactable.disableDragging();
     interactable.setClickable(false);
     fireObject = interactable;
-    //interactable.setSceneToOpen(4);
-
 
     Collections.sort(sceneObjects);
 
@@ -222,7 +244,6 @@ class World {
     element.setClickable(true);
     element.setSceneToOpen(1);
 
-
     //setup what places the numbers can be placed int
     UIElement elementRef;
     elementRef = (UIElement)sceneObjects.get(0);
@@ -248,7 +269,6 @@ class World {
     elementRef.addOverlapTargets(sceneObjects.get(5));
     elementRef.addOverlapTargets(sceneObjects.get(6));
     elementRef.addOverlapTargets(sceneObjects.get(7));
-
 
     Collections.sort(sceneObjects);
     Scene scene = new Scene(sceneObjects);
@@ -283,7 +303,6 @@ class World {
     element.setValue(3);
     element.setRepresentNumber(false);
 
-    //println(map(12, 0, 1600, 0, 1280));
     sceneObjects.add(new UIElement(new PVector(531, 490), 36, 36));
     element = (UIElement)sceneObjects.get(4);
     element.disableDragging();
@@ -304,8 +323,6 @@ class World {
     element.disableDragging();
     element.setNumberIndex(3);
     element.setLayer(10);
-
-
 
     ///Square
     sceneObjects.add(new UIElement(new PVector(width/4, height/4), width/2, height/2, "Data/Bottles_scene.png"));
@@ -386,11 +403,8 @@ class World {
   }
 
   void sceneChanged() {
-    file2.play();
+    //file2.play();
   }
-
-  /*float map(float s, float a1, float a2, float b1, float b2)
-   {
-   return b1 + (s-a1)*(b2-b1)/(a2-a1);
-   }*/
+  
+  
 }

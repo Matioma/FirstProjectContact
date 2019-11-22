@@ -1,3 +1,11 @@
+public static class FontData {
+  static float FontSize = 15;
+  static float[] padding ={ 10, 10, 10, 10}; 
+
+
+  static HashMap<String, PFont> addedFonts = new HashMap<String, PFont>();
+}
+
 class UIElement extends InteractableObject {
   private int numberIndex=-1;
 
@@ -8,6 +16,10 @@ class UIElement extends InteractableObject {
   GameObject targetPlaced =null;
 
   boolean representNumber =true;
+
+  private String message = "";
+
+
 
   UIElement(PVector position) {
     super(position);
@@ -22,20 +34,38 @@ class UIElement extends InteractableObject {
     super(position, _width, _height, filePath);
   }
 
+  void setMessage(String message) {
+    this.message = message;
+  }
+
+  @Override void display() {
+    super.display();
+
+    push();
+    fill(50);
+    textFont(FontData.addedFonts.get("Helvetica"));
+    textAlign(CENTER, CENTER);
+    textSize(FontData.FontSize);
+    textLeading(FontData.FontSize);
+    text(message, position.x +FontData.padding[3], position.y+FontData.padding[0], imgWidth-FontData.padding[3]-FontData.padding[1], imgHeight-FontData.padding[0]-FontData.padding[2]);
+    pop();
+  }
+
   void setNumberIndex(int number) {
     numberIndex = number;
   }
   void setValue(int value) {
     this.value = value;
   }
-  void setRepresentNumber(boolean value){
+  void setRepresentNumber(boolean value) {
     representNumber = value;
   }
 
-  void onClick() {
+
+
+  @Override void onClick() {
     if (isClickable) {
       openScene();
-      //world.setSceneNumber(1);
     }
     if (targetPlaced !=null) {
       UIElement element = (UIElement)targetPlaced;
@@ -45,10 +75,10 @@ class UIElement extends InteractableObject {
       targetPlaced =null;
     }
   }
-  void onDragged() {
+  @Override void onDragged() {
     followMouse();
   }
-  void onRelease() {
+  @Override void onRelease() {
     if (representNumber) {
       if (overlapTargets.size()>0) {
         for (GameObject obj : overlapTargets) {
@@ -67,8 +97,8 @@ class UIElement extends InteractableObject {
           }
         }
       }
-    }else{
-       if (overlapTargets.size()>0) {
+    } else {
+      if (overlapTargets.size()>0) {
         for (GameObject obj : overlapTargets) {
           if (this.collider.collided(obj.collider)) {
             UIElement element = (UIElement)obj;
@@ -85,9 +115,6 @@ class UIElement extends InteractableObject {
           }
         }
       }
-    
-    
-    
     }
 
     if (targetObjectToOverlap !=null) {
@@ -104,5 +131,10 @@ class UIElement extends InteractableObject {
         }
       }
     }
+  }
+  @Override void onHover() {
+    println("Mouse hovered on uiELement");
+  }
+  @Override void onHoverEnd() {
   }
 }

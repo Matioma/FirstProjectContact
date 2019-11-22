@@ -5,9 +5,7 @@ abstract class InteractableObject extends GameObject implements IDisplayable, II
   GameObject targetObjectToOverlap  = null;
   ArrayList<GameObject> overlapTargets = new ArrayList<GameObject>();
 
-
   private int sceneToOpen = -1;
-
 
   InteractableObject(PVector position) {
     super(position);
@@ -42,7 +40,7 @@ abstract class InteractableObject extends GameObject implements IDisplayable, II
   void setClickable(boolean value) {
     isClickable = value;
   }
-  void setSceneToOpen(int sceneNumber){
+  void setSceneToOpen(int sceneNumber) {
     sceneToOpen = sceneNumber;
   }
 
@@ -75,8 +73,12 @@ abstract class InteractableObject extends GameObject implements IDisplayable, II
   void openScene() {
     if (sceneToOpen>=0 && sceneToOpen<world.scenes.size()) {
       world.setSceneNumber(sceneToOpen);
-    }else{
+    } else {
       println("Tried to open non existent scene");
     }
   }
+  
+  
+  
+
 }

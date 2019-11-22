@@ -1,4 +1,4 @@
-class Note extends InteractableObject{
+class Note extends InteractableObject {
 
   Note(PVector position) {
     super(position);
@@ -10,14 +10,20 @@ class Note extends InteractableObject{
     super(position, _width, _height, filePath);
   }
 
-  void onClick() {
+
+  @Override void onClick() {
     println("Yay the note has been clicked");
     world.setSceneNumber(2);
   }
-  void onRelease() {
+  @Override void onRelease() {
     println("Yay the note has been released");
   }  
-  void onDragged() {
-    
+  @Override void onDragged() {
   }
+  @Override void onHover(){
+    println("Mouse hovered on Vase");
+  }
+  @Override void onHoverEnd(){
+  }
+  
 }

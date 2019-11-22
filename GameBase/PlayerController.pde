@@ -2,6 +2,7 @@ class PlayerController {
 
   private final World worldRef;
   private IInteractable interactedObject = null;
+  private IInteractable hoveredObject =null;
 
   //boolean pressed =false;
 
@@ -16,20 +17,39 @@ class PlayerController {
     if (interactedObject!= null) {
       interactedObject.onDragged();
     }
+
+
+
+    //Hovering mechanics
+    if (hoveredObject ==null) {
+      hoveredObject = this.worldRef.getHoveredObject();
+      if (hoveredObject !=null) {
+        hoveredObject.onHover();
+      }
+    } else {
+      try {
+        if (!this.worldRef.isObjectHovered((GameObject)hoveredObject)) {
+          hoveredObject.onHoverEnd();
+          hoveredObject =null;
+        }
+      }
+      catch(Exception e) {
+      }
+    }
   }
 
   void handleMousePressed() {
-     if (world.sceneIndex == 2) {
-        if (!pointRect(mouseX, mouseY, width/4, height/4, width/2, height/2)) {
-          world.setSceneNumber(1);
-        }
+    if (world.sceneIndex == 2) {
+      if (!pointRect(mouseX, mouseY, width/4, height/4, width/2, height/2)) {
+        world.setSceneNumber(1);
       }
-      if (world.sceneIndex == 4) {
-        if (!pointRect(mouseX, mouseY, width/4, height/4, width/2, height/2)) {
-          world.setSceneNumber(1);
-        }
+    }
+    if (world.sceneIndex == 4) {
+      if (!pointRect(mouseX, mouseY, width/4, height/4, width/2, height/2)) {
+        world.setSceneNumber(1);
       }
-    
+    }
+
     //pressed = false;
     if (interactedObject ==null) {
       interactedObject = worldRef.getClickedObject();
@@ -37,8 +57,6 @@ class PlayerController {
         interactedObject.onClick();
       }
     }
-    
-    
   }
 
   void handleMouseReleased() {
