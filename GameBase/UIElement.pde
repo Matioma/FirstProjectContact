@@ -7,19 +7,18 @@ public static class FontData {
 }
 
 class UIElement extends InteractableObject {
-  private int numberIndex=-1;
-
-
-  boolean hasValue =false;
-  int value = -1;
-  boolean wasPlaced =false;
-  GameObject targetPlaced =null;
-
-  boolean representNumber =true;
+  private int conbinationSlotIndex=-1;
 
   private String message = "";
 
+  //
+  boolean hasValue =false;
+  int value = -1;
+ 
+  GameObject targetPlaced =null;
+  boolean isValueElement =true;
 
+  
 
   UIElement(PVector position) {
     super(position);
@@ -51,14 +50,14 @@ class UIElement extends InteractableObject {
     pop();
   }
 
-  void setNumberIndex(int number) {
-    numberIndex = number;
+  void setConbinationSlotIndex(int number) {
+    conbinationSlotIndex = number;
   }
   void setValue(int value) {
     this.value = value;
   }
   void setRepresentNumber(boolean value) {
-    representNumber = value;
+    isValueElement = value;
   }
 
 
@@ -71,7 +70,7 @@ class UIElement extends InteractableObject {
       UIElement element = (UIElement)targetPlaced;
       element.hasValue = false;
       element.value = -1;
-      currentlyPlacedValues[element.numberIndex] = -1;
+      currentlyPlacedValues[element.conbinationSlotIndex] = -1;
       targetPlaced =null;
     }
   }
@@ -79,7 +78,7 @@ class UIElement extends InteractableObject {
     followMouse();
   }
   @Override void onRelease() {
-    if (representNumber) {
+    if (isValueElement) {
       if (overlapTargets.size()>0) {
         for (GameObject obj : overlapTargets) {
           if (this.collider.collided(obj.collider)) {
@@ -87,7 +86,7 @@ class UIElement extends InteractableObject {
             if (!element.hasValue) {
               element.hasValue = true;
               targetPlaced = obj;
-              currentlyPlacedValues[element.numberIndex] = value;
+              currentlyPlacedValues[element.conbinationSlotIndex] = value;
               println(checkPassword());
               this.position.set(obj.position);
               if (checkPassword()) {
@@ -105,7 +104,7 @@ class UIElement extends InteractableObject {
             if (!element.hasValue) {
               element.hasValue = true;
               targetPlaced = obj;
-              currentlyFireValues[element.numberIndex] = value;
+              currentlyFireValues[element.conbinationSlotIndex] = value;
               println(checkFireWord());
               this.position.set(obj.position);
               if (checkFireWord()) {
@@ -133,7 +132,7 @@ class UIElement extends InteractableObject {
     }
   }
   @Override void onHover() {
-    println("ui Element");
+    //println("ui Element");
   }
   @Override void onHoverEnd() {
   }

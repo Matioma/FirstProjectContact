@@ -13,11 +13,12 @@ int[] currentlyPlacedValues = new int[4];
 int[] currentlyFireValues = new int[4];
 
 Timer timer = new Timer();
+Time time;
 
 void setup() {
   size (1280, 720);
   world = new World();
-
+  time = new Time();
 
   loadFonts();
   //file1 = new SoundFile(this, "Sounds/1.1.wav");
@@ -26,9 +27,12 @@ void setup() {
 }
 
 void draw() {
+  time.update();
   background(0);
   world.update();
   world.display();
+
+  time.lastFrameDeltaTime = time.getDeltaTime();
 }
 
 void mousePressed() {

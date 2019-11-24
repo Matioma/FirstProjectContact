@@ -41,7 +41,6 @@ class World {
   void update() {
     playerController.update();
     timer.update();
-    println(timer.getTimeString());
     if (timerElement !=null) {
       timerElement.setMessage(timer.getTimeString());
     }
@@ -111,9 +110,6 @@ class World {
 
     element = (UIElement)sceneObjects.get(2);
     element.setTargetCollider(sceneObjects.get(0));
-
-
-
 
     Collections.sort(sceneObjects);
     Scene scene = new Scene(sceneObjects);
@@ -213,33 +209,31 @@ class World {
     element.setLayer(15);
     element.setValue(4);
 
-    //println(map(12, 0, 1600, 0, 1280));
     sceneObjects.add(new UIElement(new PVector(531, 490), 36, 36));
     element = (UIElement)sceneObjects.get(4);
     element.disableDragging();
-    element.setNumberIndex(0);
+    element.setConbinationSlotIndex(0);
     element.setLayer(10);
     sceneObjects.add(new UIElement(new PVector(531+36+9.6, 490), 36, 36));
     element = (UIElement)sceneObjects.get(5);
     element.disableDragging();
-    element.setNumberIndex(1);
+    element.setConbinationSlotIndex(1);
     element.setLayer(10);
     sceneObjects.add(new UIElement(new PVector(531+2*(36+9.6), 490), 36, 36));
     element = (UIElement)sceneObjects.get(6);
     element.disableDragging();
-    element.setNumberIndex(2);
+    element.setConbinationSlotIndex(2);
     element.setLayer(10);
     sceneObjects.add(new UIElement(new PVector(531+3*(36+9.6), 490), 36, 36));
     element = (UIElement)sceneObjects.get(7);
     element.disableDragging();
-    element.setNumberIndex(3);
+    element.setConbinationSlotIndex(3);
     element.setLayer(10);
-
 
     sceneObjects.add(new UIElement(new PVector(0, height-70), 150, 70));
     element = (UIElement)sceneObjects.get(8);
     element.disableDragging();
-    element.setNumberIndex(3);
+    element.setConbinationSlotIndex(3);
     element.setLayer(0);
     element.setClickable(true);
     element.setTargetScene(Levels.LIVING_ROOM);
@@ -310,22 +304,22 @@ class World {
     sceneObjects.add(new UIElement(new PVector(531, 490), 36, 36));
     element = (UIElement)sceneObjects.get(4);
     element.disableDragging();
-    element.setNumberIndex(0);
+    element.setConbinationSlotIndex(0);
     element.setLayer(10);
     sceneObjects.add(new UIElement(new PVector(531+36+9.6, 490), 36, 36));
     element = (UIElement)sceneObjects.get(5);
     element.disableDragging();
-    element.setNumberIndex(1);
+    element.setConbinationSlotIndex(1);
     element.setLayer(10);
     sceneObjects.add(new UIElement(new PVector(531+2*(36+9.6), 490), 36, 36));
     element = (UIElement)sceneObjects.get(6);
     element.disableDragging();
-    element.setNumberIndex(2);
+    element.setConbinationSlotIndex(2);
     element.setLayer(10);
     sceneObjects.add(new UIElement(new PVector(531+3*(36+9.6), 490), 36, 36));
     element = (UIElement)sceneObjects.get(7);
     element.disableDragging();
-    element.setNumberIndex(3);
+    element.setConbinationSlotIndex(3);
     element.setLayer(10);
 
     ///Square

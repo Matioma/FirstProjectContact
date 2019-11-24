@@ -1,26 +1,40 @@
+public class Time {
+  float lastFrameTime;
+  float lastFrameDeltaTime =0;
+
+  Time() {
+    lastFrameTime = millis();
+  }
+
+  void update() {
+    lastFrameTime = millis();
+  }
+
+  float getDeltaTime() {
+    return (millis()-lastFrameTime)/1000;
+  }
+}
+
 class Timer {
   float secondsToEnd = 60;
   float secondsLeft;
 
-  float gameStartTime;
-  float currentFrameTime;
-
   boolean timerStarted = false;
 
-    
   Timer() {
-    gameStartTime = millis();
-    secondsLeft =300;
+    secondsLeft = secondsToEnd;
   }
 
   void start() {
     timerStarted = true;
-    gameStartTime = millis();
+  }
+  void pause(){
+    timerStarted =false;
   }
   void update() {
     if (timerStarted) {
-      currentFrameTime = millis();
-      secondsLeft = secondsToEnd - (currentFrameTime - gameStartTime)/1000;
+      secondsLeft -= time.lastFrameDeltaTime;
+      println(time.lastFrameDeltaTime);
     }
   }
   String getTimeString() {
