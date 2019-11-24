@@ -34,7 +34,6 @@ class Timer {
   void update() {
     if (timerStarted) {
       secondsLeft -= time.lastFrameDeltaTime;
-      println(time.lastFrameDeltaTime);
     }
     if(secondsLeft<=0){
       Defeat();

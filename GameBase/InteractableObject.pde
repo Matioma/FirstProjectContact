@@ -5,7 +5,6 @@ abstract class InteractableObject extends GameObject implements IDisplayable, II
   GameObject targetObjectToOverlap  = null;
   ArrayList<GameObject> overlapTargets = new ArrayList<GameObject>();
 
-  //private int sceneToOpen = -1;
   protected Levels targetScene=null;
 
   InteractableObject(PVector position) {
@@ -45,7 +44,7 @@ abstract class InteractableObject extends GameObject implements IDisplayable, II
   void setClickable(boolean value) {
     isClickable = value;
   }
-  
+
   void setTargetScene(Levels sceneKey) {
     targetScene = sceneKey;
   }
@@ -59,14 +58,26 @@ abstract class InteractableObject extends GameObject implements IDisplayable, II
   }
 
   @Override void display() {
-    push();
+    displayObject();
+  }
+
+  void displayObject() {
     if (textureToDisplay!=null) {
+      push();
+      translate(position.x, position.y);
+      rotate(radians(rotation.x));
+      translate(-position.x, -position.y);
       image(textureToDisplay, position.x, position.y, imgWidth, imgHeight);
+      pop();
     } else {
+      push();
       fill(127);
+      translate(position.x, position.y);
+      rotate(radians(rotation.x));
+      translate(-position.x, -position.y);
       rect(position.x, position.y, imgWidth, imgHeight);
+      pop();
     }
-    pop();
   }
 
   void followMouse() {

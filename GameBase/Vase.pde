@@ -23,7 +23,6 @@ class Vase extends InteractableObject {
     followMouse();
   }
   @Override void onHover() {
-    println("vase");
     if (highlightedTexture!=null) {
       textureToDisplay = highlightedTexture;
     }

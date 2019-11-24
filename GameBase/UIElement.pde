@@ -14,11 +14,11 @@ class UIElement extends InteractableObject {
   //
   boolean hasValue =false;
   int value = -1;
- 
+
   GameObject targetPlaced =null;
   boolean isValueElement =true;
 
-  
+
 
   UIElement(PVector position) {
     super(position);
@@ -31,6 +31,9 @@ class UIElement extends InteractableObject {
   }
   UIElement(PVector position, float _width, float _height, String filePath) {
     super(position, _width, _height, filePath);
+  }
+  UIElement(PVector position, float _width, float _height, String pathDefault, String pathHighlighted) {
+    super(position, _width, _height, pathDefault, pathHighlighted);
   }
 
   void setMessage(String message) {
@@ -132,8 +135,13 @@ class UIElement extends InteractableObject {
     }
   }
   @Override void onHover() {
-    //println("ui Element");
+    if (highlightedTexture!=null) {
+      textureToDisplay = highlightedTexture;
+    }
   }
   @Override void onHoverEnd() {
+    if (defaultTexture!=null) {
+      textureToDisplay = defaultTexture;
+    }
   }
 }

@@ -76,6 +76,7 @@ void loadFonts() {
 }
 
 void Defeat() {
+  timer.pause();
   println("Defeat");
 }
 void Victory() {

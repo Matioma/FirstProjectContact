@@ -40,8 +40,7 @@ class CircleCollider extends Collider{
 
 abstract class Collider implements ICollidable {  
 
-  void displayCollider() {
-  }
+  abstract void displayCollider();
 
   boolean collided(Collider _collider) {
     try {

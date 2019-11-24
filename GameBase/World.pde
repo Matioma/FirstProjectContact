@@ -113,14 +113,6 @@ class World {
     element = (UIElement)sceneObjects.get(2);
     element.setTargetCollider(sceneObjects.get(0));
 
-
-
-
-    /*interactable = (InteractableObject)sceneObjects.get(6);
-     interactable.setLayer(12);
-     interactable.disableDragging();
-     interactable.setClickable(false);*/
-
     Collections.sort(sceneObjects);
     Scene scene = new Scene(sceneObjects);
 
@@ -155,7 +147,7 @@ class World {
     interactable.setClickable(true);
     interactable.setTargetScene(Levels.BOTTLE_PUZZLE);
 
-    sceneObjects.add(new AnimatedObject(new PVector(385.6, 380.6), 70, 70, "Data/Fire/fire", 5));
+    sceneObjects.add(new Fire(new PVector(385.6, 380.6), 70, 70, "Data/Fire/fire", 5));
     interactable = (InteractableObject)sceneObjects.get(4);
     interactable.setLayer(12);
     interactable.disableDragging();
@@ -177,13 +169,15 @@ class World {
     interactable.disableDragging();
     interactable.setClickable(true);
     interactable.setTargetScene(Levels.WINDOW_SCENE);
-
-
-    println(map(524, 0, 1067, 0, 1280));
-    println(map(354, 0, 600, 0, 720));
-    sceneObjects.add(new AnimatedObject(new PVector(950, 0), 1.5* 30.3, 1.5* 100, "Data/Lamp.png"));
-    sceneObjects.add(new AnimatedObject(new PVector(1050, -30), 1.5* 30.3, 1.5* 100, "Data/Lamp.png"));
-    sceneObjects.add(new AnimatedObject(new PVector(1150, -60), 1.5* 30.3, 1.5* 100, "Data/Lamp.png"));
+    
+    
+    sceneObjects.add(new Lamp(new PVector(950, 0), 1.5* 30.3, 1.5* 100, "Data/Lamp.png"));
+    sceneObjects.add(new Lamp(new PVector(1050, -30), 1.5* 30.3, 1.5* 100, "Data/Lamp.png"));
+    sceneObjects.add(new Lamp(new PVector(1150, -60), 1.5* 30.3, 1.5* 100, "Data/Lamp.png"));
+    
+    
+    sceneObjects.add(new Painting(new PVector(50,50),30,30,"Data/Key_Painting.png"));
+    
 
     Collections.sort(sceneObjects);
 
@@ -256,7 +250,7 @@ class World {
     element.setConbinationSlotIndex(3);
     element.setLayer(10);
 
-    sceneObjects.add(new UIElement(new PVector(0, height-70), 150, 70));
+    sceneObjects.add(new UIElement(new PVector(0, height-70), 174, 100, "Data/BackButton.png", "Data/BackButton_Hover.png"));
     element = (UIElement)sceneObjects.get(8);
     element.disableDragging();
     element.setConbinationSlotIndex(3);
@@ -354,8 +348,6 @@ class World {
     element =  (UIElement)sceneObjects.get(8);
     element.disableDragging();
 
-
-
     UIElement elementRef;
     elementRef = (UIElement)sceneObjects.get(0);
     elementRef.addOverlapTargets(sceneObjects.get(4));
@@ -410,11 +402,13 @@ class World {
     scenesData.put(Levels.SAFE_OPENED, scene);
   }
 
+
+  //Window scene
   void setupScene6() {
     sceneObjects = new ArrayList<GameObject>();
     UIElement element;
 
-    sceneObjects.add(new UIElement(new PVector(0, height-80), 120, 80));
+    sceneObjects.add(new UIElement(new PVector(0, height-80), 174, 100, "Data/BackButton.png", "Data/BackButton_Hover.png"));
     sceneObjects.get(0).setLayer(10);
     element =  (UIElement)sceneObjects.get(0);
     element.disableDragging();

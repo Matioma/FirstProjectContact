@@ -5,6 +5,8 @@ class GameObject implements Comparable<GameObject> {
   PImage textureToDisplay;
   float imgWidth, imgHeight;
   
+  PVector rotation = new PVector();
+  
   PImage defaultTexture,highlightedTexture;
 
   GameObject() {
