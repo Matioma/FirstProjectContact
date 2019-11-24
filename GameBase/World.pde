@@ -127,7 +127,7 @@ class World {
     sceneObjects.get(0).setLayer(1);
 
 
-    sceneObjects.add(new Note(new PVector(440, 495)));//note
+    sceneObjects.add(new Note(new PVector(440, 495),20,20, "Data/transparent.png"));//note
     InteractableObject object =(InteractableObject)sceneObjects.get(1);
     sceneObjects.get(1).setLayer(-2);
     object.setTargetScene(Levels.READ_NOTE);
@@ -138,14 +138,14 @@ class World {
     interactable.setTargetScene(Levels.SAFE_CLOSED);
 
     //Bottles puzzle
-    sceneObjects.add(new UIElement(new PVector(992, 191.33), 249.3, 66.6, "Data/transparent.png"));
+    sceneObjects.add(new UIElement(new PVector(980, 240), 249.3, 45, "Data/transparent.png"));
     interactable = (InteractableObject)sceneObjects.get(3);
     interactable.setLayer(-2);
     interactable.disableDragging();
     interactable.setClickable(true);
     interactable.setTargetScene(Levels.BOTTLE_PUZZLE);
 
-    sceneObjects.add(new UIElement(new PVector(396.6, 384.6), 55, 55, "Data/firePlace.png"));
+    sceneObjects.add(new AnimatedObject(new PVector(385.6, 380.6), 70, 70, "Data/Fire/fire",5));
     interactable = (InteractableObject)sceneObjects.get(4);
     interactable.setLayer(12);
     interactable.disableDragging();
@@ -158,6 +158,8 @@ class World {
     element.setLayer(0);
     element.setMessage(timer.getTimeString());
     timerElement = element;
+    
+    //sceneObjects.add(new AnimatedObject(new PVector))
 
     Collections.sort(sceneObjects);
 

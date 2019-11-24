@@ -19,12 +19,9 @@ class Safe extends InteractableObject {
 
   @Override void onRelease() {
   }
-
   @Override void onDragged() {
   }
-
   @Override void onHover() {
-//println("safe");
   }
   @Override void onHoverEnd() {
   }
