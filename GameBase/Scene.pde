@@ -23,7 +23,7 @@ class Scene {
         objectToDisplay.display();
       }
     }
-    debugColliders(false);
+    debugColliders(true);
   }
   
   void debugColliders(boolean debug) {

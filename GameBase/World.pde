@@ -6,7 +6,8 @@ enum Levels {
     READ_NOTE, 
     READ_BOOK, 
     SAFE_CLOSED, 
-    SAFE_OPENED
+    SAFE_OPENED, 
+    WINDOW_SCENE
 };
 
 class World {
@@ -36,6 +37,7 @@ class World {
     setupScene3();
     setupScene4();
     setupScene5();
+    setupScene6();
   }
 
   void update() {
@@ -111,6 +113,14 @@ class World {
     element = (UIElement)sceneObjects.get(2);
     element.setTargetCollider(sceneObjects.get(0));
 
+
+
+
+    /*interactable = (InteractableObject)sceneObjects.get(6);
+     interactable.setLayer(12);
+     interactable.disableDragging();
+     interactable.setClickable(false);*/
+
     Collections.sort(sceneObjects);
     Scene scene = new Scene(sceneObjects);
 
@@ -127,7 +137,7 @@ class World {
     sceneObjects.get(0).setLayer(1);
 
 
-    sceneObjects.add(new Note(new PVector(440, 495),20,20, "Data/transparent.png"));//note
+    sceneObjects.add(new Note(new PVector(440, 495), 20, 20, "Data/transparent.png"));//note
     InteractableObject object =(InteractableObject)sceneObjects.get(1);
     sceneObjects.get(1).setLayer(-2);
     object.setTargetScene(Levels.READ_NOTE);
@@ -145,7 +155,7 @@ class World {
     interactable.setClickable(true);
     interactable.setTargetScene(Levels.BOTTLE_PUZZLE);
 
-    sceneObjects.add(new AnimatedObject(new PVector(385.6, 380.6), 70, 70, "Data/Fire/fire",5));
+    sceneObjects.add(new AnimatedObject(new PVector(385.6, 380.6), 70, 70, "Data/Fire/fire", 5));
     interactable = (InteractableObject)sceneObjects.get(4);
     interactable.setLayer(12);
     interactable.disableDragging();
@@ -158,8 +168,22 @@ class World {
     element.setLayer(0);
     element.setMessage(timer.getTimeString());
     timerElement = element;
-    
-    //sceneObjects.add(new AnimatedObject(new PVector))
+
+
+    //Bottles puzzle
+    sceneObjects.add(new UIElement(new PVector(628, 0), 260, 430, "Data/transparent.png"));
+    interactable = (InteractableObject)sceneObjects.get(6);
+    interactable.setLayer(-10);
+    interactable.disableDragging();
+    interactable.setClickable(true);
+    interactable.setTargetScene(Levels.WINDOW_SCENE);
+
+
+    println(map(524, 0, 1067, 0, 1280));
+    println(map(354, 0, 600, 0, 720));
+    sceneObjects.add(new AnimatedObject(new PVector(950, 0), 1.5* 30.3, 1.5* 100, "Data/Lamp.png"));
+    sceneObjects.add(new AnimatedObject(new PVector(1050, -30), 1.5* 30.3, 1.5* 100, "Data/Lamp.png"));
+    sceneObjects.add(new AnimatedObject(new PVector(1150, -60), 1.5* 30.3, 1.5* 100, "Data/Lamp.png"));
 
     Collections.sort(sceneObjects);
 
@@ -386,12 +410,32 @@ class World {
     scenesData.put(Levels.SAFE_OPENED, scene);
   }
 
+  void setupScene6() {
+    sceneObjects = new ArrayList<GameObject>();
+    UIElement element;
+
+    sceneObjects.add(new UIElement(new PVector(0, height-80), 120, 80));
+    sceneObjects.get(0).setLayer(10);
+    element =  (UIElement)sceneObjects.get(0);
+    element.disableDragging();
+    element.setClickable(true);
+    element.setTargetScene(Levels.LIVING_ROOM);
+
+    Collections.sort(sceneObjects); 
+
+    Scene scene = new Scene(sceneObjects);
+    scene.setBackground("Data/window_Scene.png");
+    scenes.add(scene);
+
+    scenesData.put(Levels.WINDOW_SCENE, scene);
+  }
+
 
   void OpenScene(Levels levelKey) {
     if (currentSceneKey != levelKey && levelKey !=null) {
       currentSceneKey = levelKey;
       sceneChanged();
-      if(currentSceneKey == Levels.LIVING_ROOM){
+      if (currentSceneKey == Levels.LIVING_ROOM) {
         timer.start();
       }
     } else {
