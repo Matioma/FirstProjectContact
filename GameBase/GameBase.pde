@@ -74,3 +74,10 @@ void loadFonts() {
   FontData.addedFonts.put("PhosphateInline", loadFont("Data/PhosphateInline-32.vlw"));
   FontData.addedFonts.put("Helvetica", loadFont("Data/Helvetica-48.vlw"));
 }
+
+void Defeat() {
+  println("Defeat");
+}
+void Victory() {
+  println("Victory");
+}

@@ -235,22 +235,22 @@ class World {
     element.setLayer(15);
     element.setValue(4);
 
-    sceneObjects.add(new UIElement(new PVector(531, 490), 36, 36));
+    sceneObjects.add(new UIElement(new PVector(531, 490), 36, 36, "Data/transparent.png"));
     element = (UIElement)sceneObjects.get(4);
     element.disableDragging();
     element.setConbinationSlotIndex(0);
     element.setLayer(10);
-    sceneObjects.add(new UIElement(new PVector(531+36+9.6, 490), 36, 36));
+    sceneObjects.add(new UIElement(new PVector(531+36+9.6, 490), 36, 36, "Data/transparent.png"));
     element = (UIElement)sceneObjects.get(5);
     element.disableDragging();
     element.setConbinationSlotIndex(1);
     element.setLayer(10);
-    sceneObjects.add(new UIElement(new PVector(531+2*(36+9.6), 490), 36, 36));
+    sceneObjects.add(new UIElement(new PVector(531+2*(36+9.6), 490), 36, 36, "Data/transparent.png"));
     element = (UIElement)sceneObjects.get(6);
     element.disableDragging();
     element.setConbinationSlotIndex(2);
     element.setLayer(10);
-    sceneObjects.add(new UIElement(new PVector(531+3*(36+9.6), 490), 36, 36));
+    sceneObjects.add(new UIElement(new PVector(531+3*(36+9.6), 490), 36, 36, "Data/transparent.png"));
     element = (UIElement)sceneObjects.get(7);
     element.disableDragging();
     element.setConbinationSlotIndex(3);
@@ -443,7 +443,6 @@ class World {
     }
   }
 
-
   void SafeOpened() {
     OpenScene(Levels.SAFE_OPENED);
   }
@@ -452,7 +451,6 @@ class World {
       scenes.get(1).sceneObjects.remove(fireObject);
     }
   }
-
   void sceneChanged() {
   }
 }

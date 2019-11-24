@@ -36,6 +36,9 @@ class Timer {
       secondsLeft -= time.lastFrameDeltaTime;
       println(time.lastFrameDeltaTime);
     }
+    if(secondsLeft<=0){
+      Defeat();
+    }
   }
   String getTimeString() {
     return ""+(int)secondsLeft/60 +":" + (int)secondsLeft%60;
