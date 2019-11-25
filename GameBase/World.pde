@@ -7,24 +7,27 @@ enum Levels {
     READ_BOOK, 
     SAFE_CLOSED, 
     SAFE_OPENED, 
-    WINDOW_SCENE
+    WINDOW_SCENE, 
+    DEFEAT
 };
 
 class World {
   public int sceneIndex =0;
-
   public Levels currentSceneKey = Levels.MAIN_MENU;
 
   boolean startedTheGame =false;
 
-
   ArrayList<Scene> scenes = new ArrayList<Scene>(); 
   UIElement timerElement;
-
 
   PlayerController playerController;
   ArrayList<GameObject> sceneObjects = new ArrayList<GameObject>();
   HashMap<Levels, Scene> scenesData =new HashMap<Levels, Scene>();
+
+  SoundFile backgroundSound  = null;
+  SoundFile actorSound = null;
+  UIElement dialogBox = new UIElement(new PVector(500  , 500), 260, 120); 
+  int dialogNumber =-1;
 
   GameObject fireObject =null;
 
@@ -38,6 +41,7 @@ class World {
     setupScene4();
     setupScene5();
     setupScene6();
+    setupScene7();
   }
 
   void update() {
@@ -49,11 +53,15 @@ class World {
   }
 
   void display() {
+   
     try {
       scenesData.get(currentSceneKey).display();
     }
     catch(Exception e) {
     }
+     //dialogBox.display();
+    //dialogBox.display();
+    displayDialogBox();
   }
 
   IInteractable getHoveredObject() {
@@ -169,15 +177,15 @@ class World {
     interactable.disableDragging();
     interactable.setClickable(true);
     interactable.setTargetScene(Levels.WINDOW_SCENE);
-    
-    
+
+
     sceneObjects.add(new Lamp(new PVector(950, 0), 1.5* 30.3, 1.5* 100, "Data/Lamp.png"));
     sceneObjects.add(new Lamp(new PVector(1050, -30), 1.5* 30.3, 1.5* 100, "Data/Lamp.png"));
     sceneObjects.add(new Lamp(new PVector(1150, -60), 1.5* 30.3, 1.5* 100, "Data/Lamp.png"));
-    
-    
-    sceneObjects.add(new Painting(new PVector(50,50),30,30,"Data/Key_Painting.png"));
-    
+
+
+    sceneObjects.add(new Painting(new PVector(50, 50), 30, 30, "Data/Key_Painting.png"));
+
 
     Collections.sort(sceneObjects);
 
@@ -425,8 +433,24 @@ class World {
   }
 
 
+  //Defeat scene
+  void setupScene7() {
+    sceneObjects = new ArrayList<GameObject>();
+    UIElement element;
+
+    Collections.sort(sceneObjects); 
+
+    Scene scene = new Scene(sceneObjects);
+    scene.setBackground("Data/Game_Over.png");
+    scenes.add(scene);
+
+    scenesData.put(Levels.DEFEAT, scene);
+  }
+
+
   void OpenScene(Levels levelKey) {
     if (currentSceneKey != levelKey && levelKey !=null) {
+      onSceneChanged(levelKey);
       currentSceneKey = levelKey;
       sceneChanged();
       if (currentSceneKey == Levels.LIVING_ROOM) {
@@ -436,9 +460,107 @@ class World {
       println("Trying to open the exactly the same scene or the object you pressed on has no targetScene");
     }
   }
+  void onSceneChanged(Levels levelKey) {
+    if (currentSceneKey == Levels.MAIN_MENU) {
+      setBackgroundMusic("BgMusicStage1");
+    }
+  }
+
+  void onMadnessLevelChange() {
+  }
+
+  void PuzzleSolved() {
+  }
+
+  void setBackgroundMusic(String soundName) {
+    try {
+      backgroundSound.stop();
+    }
+    catch(Exception ex) {
+    }
+
+    backgroundSound = sounds.get(soundName);
+    if (backgroundSound ==null) {
+      println("failed to get sound file from the hash map");
+    } else {
+      backgroundSound.play();
+      backgroundSound.loop();
+      backgroundSound.amp(0.4);
+    }
+  }
+
+  void playActorSound(SoundFile soundKey) {
+    actorSound = soundKey;
+    actorSound.play();
+  }
+
+  void displayDialogBox() {
+    //dialogBox.display();
+    if (dialogBox!=null && actorSound !=null) {
+      if(actorSound.isPlaying()){
+        dialogBox.display();
+      }
+      
+      
+      /*if (actorSound.isPlaying()) {
+        dialogBox.display();
+      }*/
+    }
+  }
+
+  void displayNextDialog() {
+    if (dialogNumber >= phrases.size()-1) {
+      return;
+    }
+    if (actorSound==null) {
+      dialogNumber++;
+      playActorSound(actorSoundFiles.get(dialogNumber));
+      dialogBox.setMessage(phrases.get(dialogNumber));
+    } else {
+      if (!actorSound.isPlaying()) {
+        dialogNumber++;
+        playActorSound(actorSoundFiles.get(dialogNumber));
+        dialogBox.setMessage(phrases.get(dialogNumber));
+      }
+    }
+    println("Dialog number " + dialogNumber);
+
+/*
+    if (actorSound!=null) {
+      if (actorSound.isPlaying()) {
+        return;
+      }
+    } else {
+      dialogNumber++;
+      println(dialogNumber);
+      if (dialogNumber < phrases.size()) {
+        if (actorSound ==null) {
+          playActorSound(actorSoundFiles.get(dialogNumber));
+          dialogBox.setMessage(phrases.get(dialogNumber));
+        } else {
+          if (actorSound.isPlaying()) {
+            return;
+          }
+          playActorSound(actorSoundFiles.get(dialogNumber));
+          dialogBox.setMessage(phrases.get(dialogNumber));
+        }
+      }
+    }*/
+  }
+
+
+  Scene getCurrentScene() {
+    return null;
+  }
+
+
+
+
+
 
   void SafeOpened() {
     OpenScene(Levels.SAFE_OPENED);
+    PuzzleSolved();
   }
   void DisableFire() {
     if (fireObject !=null) {

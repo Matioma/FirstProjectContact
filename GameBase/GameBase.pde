@@ -15,15 +15,23 @@ int[] currentlyFireValues = new int[4];
 Timer timer = new Timer();
 Time time;
 
+HashMap<String, SoundFile> sounds = new HashMap<String, SoundFile>();
+
+ArrayList<String> phrases = new ArrayList<String>();
+ArrayList<SoundFile> actorSoundFiles = new ArrayList<SoundFile>();
+
+
+
 void setup() {
   size (1280, 720);
+  loadSounds();
+  loadActorSounds();
+  loadFonts();
+  loadTextMessages();
+
   world = new World();
   time = new Time();
-
-  loadFonts();
-  //file1 = new SoundFile(this, "Sounds/1.1.wav");
-  //file2 = new SoundFile(this, "Sounds/1.6.wav");
-  ///file.play();
+  world.setBackgroundMusic("MainMenuBgMusic");
 }
 
 void draw() {
@@ -75,7 +83,40 @@ void loadFonts() {
   FontData.addedFonts.put("Helvetica", loadFont("Data/Helvetica-48.vlw"));
 }
 
+void loadSounds() {
+  sounds.put("PickingVase", new SoundFile(this, "Sounds/picking_vase.mp3"));
+  sounds.put("OpenSafe", new SoundFile(this, "Sounds/Cut_Safe.mp3"));
+  sounds.put("SwingingLamp", new SoundFile(this, "Sounds/Cut_swinging_lamp.mp3"));
+  sounds.put("MainMenuBgMusic", new SoundFile(this, "Sounds/mainmenu_bg_music.mp3"));
+  sounds.put("BgMusicStage1", new SoundFile(this, "Sounds/Cut_Puzzle_2.mp3"));
+}
+
+void loadTextMessages() {
+  phrases.add("Typical human: \n Being too dumb to realize how dumb you really are. ");
+  phrases.add("It is getting crazier, isn’t it?!");
+  phrases.add("You should look yourself in the mirror, haha.");
+  phrases.add("Make a use of your brain.");
+  phrases.add("I crushed your mind, lol.");
+  phrases.add("More sweat and tears, please. "); 
+  phrases.add("That was clearly too much for you. "); 
+  phrases.add("Unacceptable rate of progress. ");
+  phrases.add("Yeah, I am so sorry, but you will get it eventually.");
+}
+
+void loadActorSounds() {
+  actorSoundFiles.add(new SoundFile(this, "Sounds/typical_human.wav"));
+  actorSoundFiles.add(new SoundFile(this, "Sounds/crazier_isnt_it.wav"));
+  actorSoundFiles.add(new SoundFile(this, "Sounds/see_urself_in_the_mirror.wav"));
+  actorSoundFiles.add(new SoundFile(this, "Sounds/make_use_of_ur_brain.wav"));
+  actorSoundFiles.add(new SoundFile(this, "Sounds/ill_crush_ur_mind.wav"));
+  actorSoundFiles.add(new SoundFile(this, "Sounds/MoreSweatandTears.wav"));
+  actorSoundFiles.add(new SoundFile(this, "Sounds/ClearlyToo_much_for_you.wav"));
+  actorSoundFiles.add(new SoundFile(this, "Sounds/unacc_rate_of_progress.wav"));
+  actorSoundFiles.add(new SoundFile(this, "Sounds/hahaha_I_am_so_sorry_but_you_will_get_it_eventually.wav"));
+}
+
 void Defeat() {
+  world.OpenScene(Levels.DEFEAT);
   timer.pause();
   println("Defeat");
 }

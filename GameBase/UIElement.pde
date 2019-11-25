@@ -1,5 +1,5 @@
 public static class FontData {
-  static float FontSize = 15;
+  static float FontSize = 22;
   static float[] padding ={ 10, 10, 10, 10}; 
 
 

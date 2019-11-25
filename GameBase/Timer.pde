@@ -16,7 +16,7 @@ public class Time {
 }
 
 class Timer {
-  float secondsToEnd = 60;
+  float secondsToEnd = 300;
   float secondsLeft;
 
   boolean timerStarted = false;
@@ -34,6 +34,10 @@ class Timer {
   void update() {
     if (timerStarted) {
       secondsLeft -= time.lastFrameDeltaTime;
+      println((int)secondsLeft%15);
+      if((int)secondsLeft%15 ==0){
+        world.displayNextDialog();
+      }
     }
     if(secondsLeft<=0){
       Defeat();

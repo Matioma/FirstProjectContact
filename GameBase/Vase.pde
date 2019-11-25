@@ -16,6 +16,7 @@ class Vase extends InteractableObject {
   }
 
   @Override void onClick() {
+    
   }
   @Override void onRelease() {
   }  
