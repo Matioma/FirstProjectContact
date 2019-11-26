@@ -95,13 +95,6 @@ void loadFonts() {
 }
 
 void loadSounds() {
-  /*
-  sounds.put("PickingVase", new AudioPlayer( "Sounds/picking_vase.mp3"));
-   sounds.put("OpenSafe", new AudioPlayer(this, "Sounds/Cut_Safe.mp3"));
-   sounds.put("SwingingLamp", new SoundFile(this, "Sounds/Cut_swinging_lamp.mp3"));
-   sounds.put("MainMenuBgMusic", new SoundFile(this, "Sounds/mainmenu_bg_music.mp3"));
-   sounds.put("BgMusicStage1", new SoundFile(this, "Sounds/Cut_Puzzle_2.mp3"));
-   */
   sounds.put("PickingVase", minim.loadFile("Sounds/picking_vase.mp3"));
   sounds.get("PickingVase").setGain(10);
   sounds.put("OpenSafe", minim.loadFile("Sounds/Cut_Safe.mp3"));
@@ -125,17 +118,6 @@ void loadTextMessages() {
 }
 
 void loadActorSounds() {
-  /*
-  actorSoundFiles.add(new SoundFile(this, "Sounds/typical_human.wav"));
-   actorSoundFiles.add(new SoundFile(this, "Sounds/crazier_isnt_it.wav"));
-   actorSoundFiles.add(new SoundFile(this, "Sounds/see_urself_in_the_mirror.wav"));
-   actorSoundFiles.add(new SoundFile(this, "Sounds/make_use_of_ur_brain.wav"));
-   actorSoundFiles.add(new SoundFile(this, "Sounds/ill_crush_ur_mind.wav"));
-   actorSoundFiles.add(new SoundFile(this, "Sounds/MoreSweatandTears.wav"));
-   actorSoundFiles.add(new SoundFile(this, "Sounds/ClearlyToo_much_for_you.wav"));
-   actorSoundFiles.add(new SoundFile(this, "Sounds/unacc_rate_of_progress.wav"));
-   actorSoundFiles.add(new SoundFile(this, "Sounds/hahaha_I_am_so_sorry_but_you_will_get_it_eventually.wav"));
-   */
   actorSoundFiles.add(minim.loadFile("Sounds/typical_human.wav"));
   actorSoundFiles.add(minim.loadFile("Sounds/crazier_isnt_it.wav"));
   actorSoundFiles.add(minim.loadFile("Sounds/see_urself_in_the_mirror.wav"));

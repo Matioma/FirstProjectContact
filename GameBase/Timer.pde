@@ -20,8 +20,8 @@ class Timer {
   float secondsLeft;
 
   boolean timerStarted = false;
-  
-  //ev
+
+
 
   Timer() {
     secondsLeft = secondsToEnd;
@@ -30,35 +30,32 @@ class Timer {
   void start() {
     timerStarted = true;
   }
-  void pause(){
+  void pause() {
     timerStarted =false;
   }
   void update() {
+
     if (timerStarted) {
+      println((secondsToEnd-secondsLeft)/30);
+      println((int)(secondsToEnd-secondsLeft)/30);
+
+
       secondsLeft -= time.lastFrameDeltaTime;
-      if((int)secondsLeft%15 ==0){
+      if ((int)secondsLeft%15 ==0) {
         world.displayNextDialog();
       }
-      if((int)secondsLeft%15 ==1){
-        world.onMadnessLevelChange();
-        
-      }
-      if((int)secondsLeft%15 ==0){
-        world.someTimePassed();
-      }
+      /*if ((int)secondsLeft%29 ==0) {
+        println("test 30 seconds" +(int)(secondsToEnd-secondsLeft)/30);
+      }*/
+       world.onMadnessLevelChange((int)(secondsToEnd-secondsLeft)/60);
     }
-    if(secondsLeft<=0){
+    if (secondsLeft<=0) {
       Defeat();
     }
   }
-  void TriggerEvent(int time){
-    if((int)secondsLeft%time ==0){
-    
-    }
-  
-  }
-  
-  
+
+
+
   String getTimeString() {
     return ""+(int)secondsLeft/60 +":" + (int)secondsLeft%60;
   }

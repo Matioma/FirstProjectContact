@@ -9,9 +9,7 @@ class Scene {
   }
 
   void setBackground(String path) {
-    if (!justChanged) {
       background = loadImage(path);
-    }
   }
 
   void display() {

@@ -13,7 +13,7 @@ enum Levels {
 
 class World {
   public int sceneIndex =0;
-  public Levels currentSceneKey = Levels.MAIN_MENU;
+  public Levels currentSceneKey = Levels.SAFE_CLOSED;
 
   boolean startedTheGame =false;
 
@@ -25,10 +25,6 @@ class World {
   HashMap<Levels, Scene> scenesData =new HashMap<Levels, Scene>();
 
   int madnessLevel=0;
-  /*
-  SoundFile backgroundSound  = null;
-   SoundFile actorSound = null;
-   */
 
   AudioPlayer backgroundSound  = null;
   AudioPlayer actorSound = null;
@@ -49,6 +45,7 @@ class World {
     setupScene5();
     setupScene6();
     setupScene7();
+    setupScene8();
   }
 
   void update() {
@@ -60,14 +57,11 @@ class World {
   }
 
   void display() {
-
     try {
       scenesData.get(currentSceneKey).display();
     }
     catch(Exception e) {
     }
-    //dialogBox.display();
-    //dialogBox.display();
     displayDialogBox();
   }
 
@@ -116,8 +110,8 @@ class World {
     element.setTargetScene(Levels.LIVING_ROOM);
 
 
-    println(map(835,0,1192,0,1280));
-    println(map(155,0,671,0,720));
+    println(map(835, 0, 1192, 0, 1280));
+    println(map(155, 0, 671, 0, 720));
     sceneObjects.add(new UIElement(new PVector(193, 257), 120, 60, "Data/Play.png"));
     element = (UIElement)sceneObjects.get(1);
     element.setLayer(1);
@@ -129,9 +123,9 @@ class World {
     Collections.sort(sceneObjects);
     Scene scene = new Scene(sceneObjects);
     scene.setBackground("Data/MainMenuBG.jpg");
-    
+
     scenes.add(scene);
-    
+
     scenesData.put(Levels.MAIN_MENU, scene);
   }
 
@@ -154,35 +148,43 @@ class World {
     interactable.setTargetScene(Levels.SAFE_CLOSED);
 
     //Bottles puzzle
-    sceneObjects.add(new UIElement(new PVector(980, 240), 249.3, 45, "Data/transparent.png"));
+    sceneObjects.add(new UIElement(new PVector(980, 240), 249.3, 55, "Data/transparent.png"));
     interactable = (InteractableObject)sceneObjects.get(3);
     interactable.setLayer(-2);
     interactable.disableDragging();
     interactable.setClickable(true);
     interactable.setTargetScene(Levels.BOTTLE_PUZZLE);
 
-    sceneObjects.add(new Fire(new PVector(385.6, 380.6), 70, 70, "Data/Fire/", 5));
+    sceneObjects.add(new Fire(new PVector(380, 380.6), 70, 70, "Data/Fire/", 4));
     interactable = (InteractableObject)sceneObjects.get(4);
     interactable.setLayer(12);
     interactable.disableDragging();
     interactable.setClickable(false);
     fireObject = interactable;
 
-    sceneObjects.add(new UIElement(new PVector(width-300, height-120), 300, 120));
+    /*sceneObjects.add(new UIElement(new PVector(width-300, height-120), 300, 120));
     UIElement element = (UIElement)sceneObjects.get(5);
     element.disableDragging();
     element.setLayer(0);
     element.setMessage(timer.getTimeString());
-    timerElement = element;
+    timerElement = element;*/
 
 
     //Bottles puzzle
     sceneObjects.add(new UIElement(new PVector(628, 0), 260, 430, "Data/transparent.png"));
-    interactable = (InteractableObject)sceneObjects.get(6);
+    interactable = (InteractableObject)sceneObjects.get(5);
     interactable.setLayer(-10);
     interactable.disableDragging();
     interactable.setClickable(true);
     interactable.setTargetScene(Levels.WINDOW_SCENE);
+
+    //Read book
+    sceneObjects.add(new UIElement(new PVector(120, 165), 36, 15, "Data/RedBook.png", "Data/RedBook_Highlight.png"));
+    interactable = (InteractableObject)sceneObjects.get(6);
+    interactable.setLayer(10);
+    interactable.disableDragging();
+    interactable.setClickable(true);
+    interactable.setTargetScene(Levels.READ_BOOK);
 
 
     sceneObjects.add(new Lamp(new PVector(950, 0), 1.5* 30.3, 1.5* 100, "Data/Lamp.png"));
@@ -228,6 +230,7 @@ class World {
 
     sceneObjects.add(new UIElement(new PVector(width/3+60, height/2), 36, 36, "Data/number_1.png"));
     element = (UIElement)sceneObjects.get(0);  
+    //element.setMessage("1");
     element.setLayer(15);
     element.setValue(1);
     sceneObjects.add(new UIElement(new PVector(width/3+120, height/2), 36, 36, "Data/number_2.png"));
@@ -454,6 +457,27 @@ class World {
   }
 
 
+  //readbook
+  void setupScene8() {
+   sceneObjects = new ArrayList<GameObject>();
+    UIElement element;
+
+    sceneObjects.add(new UIElement(new PVector(width/4, height/4), width/2, height/2, "Data/Book_scene.png"));
+    sceneObjects.get(0).setLayer(1);
+    element =  (UIElement)sceneObjects.get(0);
+    element.disableDragging();
+
+    Collections.sort(sceneObjects); 
+
+    Scene scene = new Scene(sceneObjects);
+    scene.setBackground("Data/LivingRoom_Dark.png");
+    scenes.add(scene);
+
+    scenesData.put(Levels.READ_BOOK, scene);
+  }
+
+
+
   void OpenScene(Levels levelKey) {
     if (currentSceneKey != levelKey && levelKey !=null) {
       onSceneChanged(levelKey);
@@ -472,37 +496,41 @@ class World {
     }
   }
 
-  void onMadnessLevelChange() { 
-    //println("Yay");
-    switch(madnessLevel) {
-    case 0:
-      break;
-    case 1:
-      scenesData.get(Levels.LIVING_ROOM).setBackground("Data/CrazyScene2.png");
-      scenesData.get(Levels.LIVING_ROOM).justChanged =true;
-      break;
-    case 2:
-      scenesData.get(Levels.LIVING_ROOM).setBackground("Data/CrazyScene3.png");
-      scenesData.get(Levels.LIVING_ROOM).justChanged =true;
-      break;
-    case 3:
-      scenesData.get(Levels.LIVING_ROOM).setBackground("Data/CrazyScene4.png");
-      scenesData.get(Levels.LIVING_ROOM).justChanged =true;
-      break;
-    default: 
-      //madnessLevel++;
-      break;
+  void onMadnessLevelChange(int _madnessLevel) { 
+    if (_madnessLevel != madnessLevel) {
+      madnessLevel = _madnessLevel;
+      //this.madnessLevel = _madnessLevel;
+      switch(madnessLevel) {
+      case 0:
+        break;
+      case 1:
+        println("MadnessChanged");
+        scenesData.get(Levels.LIVING_ROOM).setBackground("Data/CrazyScene2.png");
+        //scenesData.get(Levels.LIVING_ROOM).justChanged =true;
+        break;
+      case 2:
+        scenesData.get(Levels.LIVING_ROOM).setBackground("Data/CrazyScene3.png");
+        //scenesData.get(Levels.LIVING_ROOM).justChanged =true;
+        break;
+      case 3:
+        scenesData.get(Levels.LIVING_ROOM).setBackground("Data/CrazyScene4.png");
+        //scenesData.get(Levels.LIVING_ROOM).justChanged =true;
+        break;
+      default: 
+        //madnessLevel++;
+        break;
+      }
     }
     //scenesData.get(Levels.MAIN_MENU).setBackground("Data/CrazyScene2.png");
   }
 
   void someTimePassed() {
-    if(!scenesData.get(Levels.LIVING_ROOM).justChanged){
-      madnessLevel++;
-      println(madnessLevel);
-    }
-    scenesData.get(Levels.LIVING_ROOM).justChanged =false;
-    ;
+    /*if(!scenesData.get(Levels.LIVING_ROOM).justChanged){
+     //madnessLevel++;
+     println(madnessLevel);
+     }
+     scenesData.get(Levels.LIVING_ROOM).justChanged =false;
+     ;*/
   }
 
   void PuzzleSolved() {
