@@ -1,5 +1,6 @@
 import processing.sound.*;
 import java.util.Collections;
+import ddf.minim.*;
 
 
 World world;
@@ -15,6 +16,8 @@ int[] currentlyFireValues = new int[4];
 Timer timer = new Timer();
 Time time;
 
+Minim minim;
+
 HashMap<String, SoundFile> sounds = new HashMap<String, SoundFile>();
 
 ArrayList<String> phrases = new ArrayList<String>();
@@ -23,7 +26,9 @@ ArrayList<SoundFile> actorSoundFiles = new ArrayList<SoundFile>();
 
 
 void setup() {
+
   size (1280, 720);
+  minim = new Minim(this);
   loadSounds();
   loadActorSounds();
   loadFonts();
@@ -35,11 +40,13 @@ void setup() {
 }
 
 void draw() {
+
+  //fill(0,0,0,5);
   time.update();
   background(0);
   world.update();
   world.display();
-
+  
   time.lastFrameDeltaTime = time.getDeltaTime();
 }
 

@@ -12,6 +12,7 @@ class Scene {
   
   void display() {
     if(background !=null){
+      //smooth();
       image(background,0,0, width,height);
     }else{
       background(255);
