@@ -24,9 +24,15 @@ class World {
   ArrayList<GameObject> sceneObjects = new ArrayList<GameObject>();
   HashMap<Levels, Scene> scenesData =new HashMap<Levels, Scene>();
 
+  /*
   SoundFile backgroundSound  = null;
-  SoundFile actorSound = null;
-  UIElement dialogBox = new UIElement(new PVector(500  , 500), 260, 120); 
+   SoundFile actorSound = null;
+   */
+
+  AudioPlayer backgroundSound  = null;
+  AudioPlayer actorSound = null;
+
+  UIElement dialogBox = new UIElement(new PVector(500, 500), 260, 120); 
   int dialogNumber =-1;
 
   GameObject fireObject =null;
@@ -53,13 +59,13 @@ class World {
   }
 
   void display() {
-   
+
     try {
       scenesData.get(currentSceneKey).display();
     }
     catch(Exception e) {
     }
-     //dialogBox.display();
+    //dialogBox.display();
     //dialogBox.display();
     displayDialogBox();
   }
@@ -474,7 +480,8 @@ class World {
 
   void setBackgroundMusic(String soundName) {
     try {
-      backgroundSound.stop();
+      backgroundSound.pause();
+      //backgroundSound.stop();
     }
     catch(Exception ex) {
     }
@@ -485,26 +492,21 @@ class World {
     } else {
       backgroundSound.play();
       backgroundSound.loop();
-      backgroundSound.amp(0.4);
+      //backgroundSound.amp(0.4);
+      backgroundSound.setVolume(0.4);
     }
   }
 
-  void playActorSound(SoundFile soundKey) {
+  void playActorSound(AudioPlayer soundKey) {
     actorSound = soundKey;
     actorSound.play();
   }
 
   void displayDialogBox() {
-    //dialogBox.display();
     if (dialogBox!=null && actorSound !=null) {
-      if(actorSound.isPlaying()){
+      if (actorSound.isPlaying()) {
         dialogBox.display();
       }
-      
-      
-      /*if (actorSound.isPlaying()) {
-        dialogBox.display();
-      }*/
     }
   }
 
@@ -523,40 +525,12 @@ class World {
         dialogBox.setMessage(phrases.get(dialogNumber));
       }
     }
-    println("Dialog number " + dialogNumber);
-
-/*
-    if (actorSound!=null) {
-      if (actorSound.isPlaying()) {
-        return;
-      }
-    } else {
-      dialogNumber++;
-      println(dialogNumber);
-      if (dialogNumber < phrases.size()) {
-        if (actorSound ==null) {
-          playActorSound(actorSoundFiles.get(dialogNumber));
-          dialogBox.setMessage(phrases.get(dialogNumber));
-        } else {
-          if (actorSound.isPlaying()) {
-            return;
-          }
-          playActorSound(actorSoundFiles.get(dialogNumber));
-          dialogBox.setMessage(phrases.get(dialogNumber));
-        }
-      }
-    }*/
   }
 
 
   Scene getCurrentScene() {
     return null;
   }
-
-
-
-
-
 
   void SafeOpened() {
     OpenScene(Levels.SAFE_OPENED);

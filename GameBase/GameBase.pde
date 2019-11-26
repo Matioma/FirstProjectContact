@@ -1,7 +1,11 @@
 import processing.sound.*;
 import java.util.Collections;
 import ddf.minim.*;
-
+import ddf.minim.ugens.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
 
 World world;
 SoundFile file1;
@@ -18,10 +22,10 @@ Time time;
 
 Minim minim;
 
-HashMap<String, SoundFile> sounds = new HashMap<String, SoundFile>();
+HashMap<String, AudioPlayer> sounds = new HashMap<String, AudioPlayer>();
 
 ArrayList<String> phrases = new ArrayList<String>();
-ArrayList<SoundFile> actorSoundFiles = new ArrayList<SoundFile>();
+ArrayList<AudioPlayer> actorSoundFiles = new ArrayList<AudioPlayer>();
 
 
 
@@ -46,7 +50,7 @@ void draw() {
   background(0);
   world.update();
   world.display();
-  
+
   time.lastFrameDeltaTime = time.getDeltaTime();
 }
 
@@ -91,11 +95,21 @@ void loadFonts() {
 }
 
 void loadSounds() {
-  sounds.put("PickingVase", new SoundFile(this, "Sounds/picking_vase.mp3"));
-  sounds.put("OpenSafe", new SoundFile(this, "Sounds/Cut_Safe.mp3"));
-  sounds.put("SwingingLamp", new SoundFile(this, "Sounds/Cut_swinging_lamp.mp3"));
-  sounds.put("MainMenuBgMusic", new SoundFile(this, "Sounds/mainmenu_bg_music.mp3"));
-  sounds.put("BgMusicStage1", new SoundFile(this, "Sounds/Cut_Puzzle_2.mp3"));
+  /*
+  sounds.put("PickingVase", new AudioPlayer( "Sounds/picking_vase.mp3"));
+   sounds.put("OpenSafe", new AudioPlayer(this, "Sounds/Cut_Safe.mp3"));
+   sounds.put("SwingingLamp", new SoundFile(this, "Sounds/Cut_swinging_lamp.mp3"));
+   sounds.put("MainMenuBgMusic", new SoundFile(this, "Sounds/mainmenu_bg_music.mp3"));
+   sounds.put("BgMusicStage1", new SoundFile(this, "Sounds/Cut_Puzzle_2.mp3"));
+   */
+  sounds.put("PickingVase", minim.loadFile("Sounds/picking_vase.mp3"));
+  sounds.get("PickingVase").setGain(10);
+  sounds.put("OpenSafe", minim.loadFile("Sounds/Cut_Safe.mp3"));
+  sounds.put("SwingingLamp", minim.loadFile("Sounds/Cut_swinging_lamp.mp3"));
+  sounds.put("MainMenuBgMusic", minim.loadFile("Sounds/mainmenu_bg_music.mp3"));
+  //sounds.get("MainMenuBgMusic").setGain(-10);
+  sounds.put("BgMusicStage1", minim.loadFile("Sounds/Cut_Puzzle_2.mp3"));
+  sounds.get("BgMusicStage1").setGain(-20);
 }
 
 void loadTextMessages() {
@@ -111,15 +125,26 @@ void loadTextMessages() {
 }
 
 void loadActorSounds() {
+  /*
   actorSoundFiles.add(new SoundFile(this, "Sounds/typical_human.wav"));
-  actorSoundFiles.add(new SoundFile(this, "Sounds/crazier_isnt_it.wav"));
-  actorSoundFiles.add(new SoundFile(this, "Sounds/see_urself_in_the_mirror.wav"));
-  actorSoundFiles.add(new SoundFile(this, "Sounds/make_use_of_ur_brain.wav"));
-  actorSoundFiles.add(new SoundFile(this, "Sounds/ill_crush_ur_mind.wav"));
-  actorSoundFiles.add(new SoundFile(this, "Sounds/MoreSweatandTears.wav"));
-  actorSoundFiles.add(new SoundFile(this, "Sounds/ClearlyToo_much_for_you.wav"));
-  actorSoundFiles.add(new SoundFile(this, "Sounds/unacc_rate_of_progress.wav"));
-  actorSoundFiles.add(new SoundFile(this, "Sounds/hahaha_I_am_so_sorry_but_you_will_get_it_eventually.wav"));
+   actorSoundFiles.add(new SoundFile(this, "Sounds/crazier_isnt_it.wav"));
+   actorSoundFiles.add(new SoundFile(this, "Sounds/see_urself_in_the_mirror.wav"));
+   actorSoundFiles.add(new SoundFile(this, "Sounds/make_use_of_ur_brain.wav"));
+   actorSoundFiles.add(new SoundFile(this, "Sounds/ill_crush_ur_mind.wav"));
+   actorSoundFiles.add(new SoundFile(this, "Sounds/MoreSweatandTears.wav"));
+   actorSoundFiles.add(new SoundFile(this, "Sounds/ClearlyToo_much_for_you.wav"));
+   actorSoundFiles.add(new SoundFile(this, "Sounds/unacc_rate_of_progress.wav"));
+   actorSoundFiles.add(new SoundFile(this, "Sounds/hahaha_I_am_so_sorry_but_you_will_get_it_eventually.wav"));
+   */
+  actorSoundFiles.add(minim.loadFile("Sounds/typical_human.wav"));
+  actorSoundFiles.add(minim.loadFile("Sounds/crazier_isnt_it.wav"));
+  actorSoundFiles.add(minim.loadFile("Sounds/see_urself_in_the_mirror.wav"));
+  actorSoundFiles.add(minim.loadFile("Sounds/make_use_of_ur_brain.wav"));
+  actorSoundFiles.add(minim.loadFile("Sounds/ill_crush_ur_mind.wav"));
+  actorSoundFiles.add(minim.loadFile("Sounds/MoreSweatandTears.wav"));
+  actorSoundFiles.add(minim.loadFile("Sounds/ClearlyToo_much_for_you.wav"));
+  actorSoundFiles.add(minim.loadFile("Sounds/unacc_rate_of_progress.wav"));
+  actorSoundFiles.add(minim.loadFile("Sounds/hahaha_I_am_so_sorry_but_you_will_get_it_eventually.wav"));
 }
 
 void Defeat() {

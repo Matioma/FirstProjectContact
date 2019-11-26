@@ -16,7 +16,9 @@ class Vase extends InteractableObject {
   }
 
   @Override void onClick() {
-    
+    sounds.get("PickingVase").rewind();
+    sounds.get("PickingVase").play();
+    println("Test");
   }
   @Override void onRelease() {
   }  
