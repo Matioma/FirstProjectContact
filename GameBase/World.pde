@@ -24,6 +24,7 @@ class World {
   ArrayList<GameObject> sceneObjects = new ArrayList<GameObject>();
   HashMap<Levels, Scene> scenesData =new HashMap<Levels, Scene>();
 
+  int madnessLevel=0;
   /*
   SoundFile backgroundSound  = null;
    SoundFile actorSound = null;
@@ -32,7 +33,7 @@ class World {
   AudioPlayer backgroundSound  = null;
   AudioPlayer actorSound = null;
 
-  UIElement dialogBox = new UIElement(new PVector(500, 500), 260, 120); 
+  UIElement dialogBox = new UIElement(new PVector(500, height-120), 300, 120); 
   int dialogNumber =-1;
 
   GameObject fireObject =null;
@@ -108,30 +109,29 @@ class World {
     sceneObjects = new ArrayList<GameObject>();
     UIElement element;
 
-    sceneObjects.add(new UIElement(new PVector(width/3, height/2), width/5, 30));
+    sceneObjects.add(new UIElement(new PVector(898, 168), 350, 90, "Data/transparent.png"));
     element = (UIElement)sceneObjects.get(0);
     element.disableDragging();
     element.setLayer(-5);
     element.setTargetScene(Levels.LIVING_ROOM);
 
-    sceneObjects.add(new UIElement(new PVector(width/5, height/4), width/5, 30, "Data/Text_so_you_want_to_play.png"));
-    element = (UIElement)sceneObjects.get(1);
-    element.disableDragging();
-    element.setLayer(0);
 
-    sceneObjects.add(new UIElement(new PVector(width/2, height/4), width/5, 30, "Data/Play.png"));
-    element = (UIElement)sceneObjects.get(2);
+    println(map(835,0,1192,0,1280));
+    println(map(155,0,671,0,720));
+    sceneObjects.add(new UIElement(new PVector(193, 257), 120, 60, "Data/Play.png"));
+    element = (UIElement)sceneObjects.get(1);
     element.setLayer(1);
     element.setTargetScene(Levels.LIVING_ROOM);
 
-    element = (UIElement)sceneObjects.get(2);
+    element = (UIElement)sceneObjects.get(1);
     element.setTargetCollider(sceneObjects.get(0));
 
     Collections.sort(sceneObjects);
     Scene scene = new Scene(sceneObjects);
-
+    scene.setBackground("Data/MainMenuBG.jpg");
+    
     scenes.add(scene);
-
+    
     scenesData.put(Levels.MAIN_MENU, scene);
   }
 
@@ -161,7 +161,7 @@ class World {
     interactable.setClickable(true);
     interactable.setTargetScene(Levels.BOTTLE_PUZZLE);
 
-    sceneObjects.add(new Fire(new PVector(385.6, 380.6), 70, 70, "Data/Fire/fire", 5));
+    sceneObjects.add(new Fire(new PVector(385.6, 380.6), 70, 70, "Data/Fire/", 5));
     interactable = (InteractableObject)sceneObjects.get(4);
     interactable.setLayer(12);
     interactable.disableDragging();
@@ -472,7 +472,37 @@ class World {
     }
   }
 
-  void onMadnessLevelChange() {
+  void onMadnessLevelChange() { 
+    //println("Yay");
+    switch(madnessLevel) {
+    case 0:
+      break;
+    case 1:
+      scenesData.get(Levels.LIVING_ROOM).setBackground("Data/CrazyScene2.png");
+      scenesData.get(Levels.LIVING_ROOM).justChanged =true;
+      break;
+    case 2:
+      scenesData.get(Levels.LIVING_ROOM).setBackground("Data/CrazyScene3.png");
+      scenesData.get(Levels.LIVING_ROOM).justChanged =true;
+      break;
+    case 3:
+      scenesData.get(Levels.LIVING_ROOM).setBackground("Data/CrazyScene4.png");
+      scenesData.get(Levels.LIVING_ROOM).justChanged =true;
+      break;
+    default: 
+      //madnessLevel++;
+      break;
+    }
+    //scenesData.get(Levels.MAIN_MENU).setBackground("Data/CrazyScene2.png");
+  }
+
+  void someTimePassed() {
+    if(!scenesData.get(Levels.LIVING_ROOM).justChanged){
+      madnessLevel++;
+      println(madnessLevel);
+    }
+    scenesData.get(Levels.LIVING_ROOM).justChanged =false;
+    ;
   }
 
   void PuzzleSolved() {
@@ -480,7 +510,9 @@ class World {
 
   void setBackgroundMusic(String soundName) {
     try {
+
       backgroundSound.pause();
+      backgroundSound.rewind();
       //backgroundSound.stop();
     }
     catch(Exception ex) {
@@ -492,7 +524,6 @@ class World {
     } else {
       backgroundSound.play();
       backgroundSound.loop();
-      //backgroundSound.amp(0.4);
       backgroundSound.setVolume(0.4);
     }
   }

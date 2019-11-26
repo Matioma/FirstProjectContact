@@ -23,10 +23,14 @@ class Lamp extends AnimatedObject {
 
   @Override void onClick() {
     startAnimation();
+    sounds.get("SwingingLamp").rewind();
+    sounds.get("SwingingLamp").play();
   }
 
   @Override void finishAnimation(){
     super.finishAnimation();
     animationTimePassed =0;
+    sounds.get("SwingingLamp").pause();
+    sounds.get("SwingingLamp").rewind();
   }
 }

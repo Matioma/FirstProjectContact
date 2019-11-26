@@ -155,3 +155,7 @@ void Defeat() {
 void Victory() {
   println("Victory");
 }
+void Restart() {
+  world = new World();
+  timer = new Timer();
+}

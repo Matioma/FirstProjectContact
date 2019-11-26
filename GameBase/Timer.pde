@@ -20,6 +20,8 @@ class Timer {
   float secondsLeft;
 
   boolean timerStarted = false;
+  
+  //ev
 
   Timer() {
     secondsLeft = secondsToEnd;
@@ -34,15 +36,29 @@ class Timer {
   void update() {
     if (timerStarted) {
       secondsLeft -= time.lastFrameDeltaTime;
-      println((int)secondsLeft%15);
       if((int)secondsLeft%15 ==0){
         world.displayNextDialog();
+      }
+      if((int)secondsLeft%15 ==1){
+        world.onMadnessLevelChange();
+        
+      }
+      if((int)secondsLeft%15 ==0){
+        world.someTimePassed();
       }
     }
     if(secondsLeft<=0){
       Defeat();
     }
   }
+  void TriggerEvent(int time){
+    if((int)secondsLeft%time ==0){
+    
+    }
+  
+  }
+  
+  
   String getTimeString() {
     return ""+(int)secondsLeft/60 +":" + (int)secondsLeft%60;
   }
