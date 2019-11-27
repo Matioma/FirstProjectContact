@@ -7,6 +7,10 @@ class Lamp extends AnimatedObject {
     super(position, _width, _height, filePath);
     SetCollider(new BoxCollider(position, _width, _height));
   }
+  Lamp(PVector position, float _width, float _height, String filePath1, String filePath2) {
+    super(position, _width, _height, filePath1,filePath2);
+    SetCollider(new BoxCollider(position, _width, _height));
+  }
 
   @Override void animationFrameDraw() {
     push();

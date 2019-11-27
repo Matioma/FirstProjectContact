@@ -9,6 +9,10 @@ abstract class AnimatedObject extends InteractableObject {
     super(position, _width, _height, filePath);
     SetCollider(new BoxCollider(position, _width, _height));
   }
+  AnimatedObject(PVector position, float _width, float _height, String filePath1, String filePath2) {
+    super(position, _width, _height, filePath1, filePath2);
+    SetCollider(new BoxCollider(position, _width, _height));
+  }
 
   @Override void display() {
     if ( !looping) {
@@ -21,8 +25,8 @@ abstract class AnimatedObject extends InteractableObject {
   void finishAnimation() {
     looping = false;
   }
-  
-  void startAnimation(){
+
+  void startAnimation() {
     if (!looping) {
       looping = true;
     }
@@ -37,7 +41,13 @@ abstract class AnimatedObject extends InteractableObject {
   @Override void onDragged() {
   }
   @Override void onHover() {
+    if (highlightedTexture!=null) {
+      textureToDisplay = highlightedTexture;
+    }
   }
   @Override void onHoverEnd() {
+    if (defaultTexture!=null) {
+      textureToDisplay = defaultTexture;
+    }
   }
 }

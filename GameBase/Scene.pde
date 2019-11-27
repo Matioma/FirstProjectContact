@@ -4,12 +4,16 @@ class Scene {
   private boolean justChanged=false;
 
 
+  private float alpha =255;
+
+
   Scene(ArrayList<GameObject> scene) {
     sceneObjects = scene;
   }
 
   void setBackground(String path) {
-      background = loadImage(path);
+    background = loadImage(path);
+    alpha=255;
   }
 
   void display() {
@@ -20,6 +24,8 @@ class Scene {
       background(255);
     }
 
+
+
     for ( GameObject obj : sceneObjects) {
       IDisplayable objectToDisplay = (IDisplayable)obj;
       if (obj !=null) {
@@ -27,6 +33,15 @@ class Scene {
       }
     }
     debugColliders(false);
+
+
+    push();
+    fill(0, 0, 0,alpha);
+    rect(0, 0, width, height);
+    pop();
+
+
+    alpha -=5;
   }
 
   void debugColliders(boolean debug) {

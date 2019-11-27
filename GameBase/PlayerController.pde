@@ -34,10 +34,14 @@ class PlayerController {
   }
 
   void handleMousePressed() {
-    if(world.currentSceneKey ==Levels.BOTTLE_PUZZLE ||world.currentSceneKey ==Levels.READ_NOTE ||world.currentSceneKey ==Levels.READ_BOOK){
+    if (world.currentSceneKey ==Levels.READ_NOTE ||world.currentSceneKey ==Levels.READ_BOOK) {
       if (!pointRect(mouseX, mouseY, width/4, height/4, width/2, height/2)) {
         world.OpenScene(Levels.LIVING_ROOM);
-        
+      }
+    }
+    if (world.currentSceneKey ==Levels.BOTTLE_PUZZLE) {
+      if (!pointRect(mouseX, mouseY, 116, 178, 1048, 364)) {
+        world.OpenScene(Levels.LIVING_ROOM);
       }
     }
 

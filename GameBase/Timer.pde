@@ -16,12 +16,12 @@ public class Time {
 }
 
 class Timer {
-  float secondsToEnd = 300;
+  float secondsToEnd = 210;
   float secondsLeft;
 
   boolean timerStarted = false;
 
-
+  int backgroundSwapTime = 45;
 
   Timer() {
     secondsLeft = secondsToEnd;
@@ -36,8 +36,8 @@ class Timer {
   void update() {
 
     if (timerStarted) {
-      println((secondsToEnd-secondsLeft)/30);
-      println((int)(secondsToEnd-secondsLeft)/30);
+      println((secondsToEnd-secondsLeft)/backgroundSwapTime);
+      //println((int)(secondsToEnd-secondsLeft)/30);
 
 
       secondsLeft -= time.lastFrameDeltaTime;
@@ -45,9 +45,10 @@ class Timer {
         world.displayNextDialog();
       }
       /*if ((int)secondsLeft%29 ==0) {
-        println("test 30 seconds" +(int)(secondsToEnd-secondsLeft)/30);
-      }*/
-       world.onMadnessLevelChange((int)(secondsToEnd-secondsLeft)/60);
+       println("test 30 seconds" +(int)(secondsToEnd-secondsLeft)/30);
+       }*/
+      //println((int)(secondsToEnd-secondsLeft)/backgroundSwapTime);
+      world.onMadnessLevelChange((int)(secondsToEnd-secondsLeft)/backgroundSwapTime);
     }
     if (secondsLeft<=0) {
       Defeat();

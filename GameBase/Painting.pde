@@ -16,6 +16,10 @@ class Painting extends AnimatedObject {
     super(position, _width, _height, filePath);
     SetCollider(new BoxCollider(position, _width, _height));
   }
+  Painting(PVector position, float _width, float _height, String filePath1, String filePath2) {
+    super(position, _width, _height, filePath1,filePath2);
+    SetCollider(new BoxCollider(position, _width, _height));
+  }
 
   @Override void animationFrameDraw() {
     rotatePainting();
@@ -29,7 +33,7 @@ class Painting extends AnimatedObject {
     /*if (pressedAlready) {
      rotation.x = 30* sin(2*PI*animationTimePassed);
      }*/
-    displayObject();  
+    //displayObject();  
     push();
     if (!pressedAlready) {
       translate(position.x + imgWidth/2, position.y + imgHeight/2);
@@ -40,8 +44,6 @@ class Painting extends AnimatedObject {
     pop();
     animationTimePassed += time.lastFrameDeltaTime;
     if (animationTimePassed >=animationTime) {
-      pressedAlready=true;
-      //rotation.x = 30* sin(animationTimePassed);
       finishAnimation();
     }
   }

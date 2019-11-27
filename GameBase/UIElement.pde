@@ -1,5 +1,5 @@
 public static class FontData {
-  static float FontSize = 5;
+  static float FontSize = 22;
   static float[] padding ={ 10, 10, 10, 10}; 
 
 
@@ -46,6 +46,7 @@ class UIElement extends InteractableObject {
     push();
     fill(50);
     textFont(FontData.addedFonts.get("Helvetica"));
+    fill(0, 102, 153, 204);
     textAlign(CENTER, CENTER);
     textSize(FontData.FontSize);
     textLeading(FontData.FontSize);
@@ -108,10 +109,11 @@ class UIElement extends InteractableObject {
               element.hasValue = true;
               targetPlaced = obj;
               currentlyFireValues[element.conbinationSlotIndex] = value;
-              println(checkFireWord());
+              //println(checkFireWord());
               this.position.set(obj.position);
               if (checkFireWord()) {
                 world.DisableFire();
+                world.OpenScene(Levels.LIVING_ROOM);
               }
             }
           }
