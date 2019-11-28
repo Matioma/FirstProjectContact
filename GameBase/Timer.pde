@@ -36,18 +36,12 @@ class Timer {
   void update() {
 
     if (timerStarted) {
-      println((secondsToEnd-secondsLeft)/backgroundSwapTime);
-      //println((int)(secondsToEnd-secondsLeft)/30);
-
+      //println((secondsToEnd-secondsLeft)/backgroundSwapTime);
 
       secondsLeft -= time.lastFrameDeltaTime;
       if ((int)secondsLeft%15 ==0) {
         world.displayNextDialog();
       }
-      /*if ((int)secondsLeft%29 ==0) {
-       println("test 30 seconds" +(int)(secondsToEnd-secondsLeft)/30);
-       }*/
-      //println((int)(secondsToEnd-secondsLeft)/backgroundSwapTime);
       world.onMadnessLevelChange((int)(secondsToEnd-secondsLeft)/backgroundSwapTime);
     }
     if (secondsLeft<=0) {

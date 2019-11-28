@@ -133,78 +133,91 @@ class World {
   void setupLivingRoom() {
     sceneObjects = new ArrayList<GameObject>();
 
-    sceneObjects.add(new Vase(new PVector(433, 470), 25, 50, "Data/vase_vector.png", "Data/vase_vector_outline.png"));//vase
-    sceneObjects.get(0).setLayer(1);
-
-
-    sceneObjects.add(new Note(new PVector(440, 495), 20, 20, "Data/transparent.png"));//note
-    InteractableObject object =(InteractableObject)sceneObjects.get(1);
-    sceneObjects.get(1).setLayer(-2);
+    sceneObjects.add(new Note(new PVector(440, 495), 20, 20, "Data/transparent.png"));//0
+    InteractableObject object =(InteractableObject)sceneObjects.get(sceneObjects.size()-1);
+    sceneObjects.get(sceneObjects.size()-1).setLayer(0);
     object.setTargetScene(Levels.READ_NOTE);
 
-    sceneObjects.add(new Safe(new PVector(396.6, 384.6), 55, 55, "Data/transparent.png"));
-    InteractableObject interactable = (InteractableObject)sceneObjects.get(2);
-    sceneObjects.get(2).setLayer(-2);
+    sceneObjects.add(new Safe(new PVector(396.6, 384.6), 55, 55, "Data/transparent.png"));//1
+    InteractableObject interactable = (InteractableObject)sceneObjects.get(sceneObjects.size()-1);
+    sceneObjects.get(sceneObjects.size()-1).setLayer(0);
     interactable.setTargetScene(Levels.SAFE_CLOSED);
 
     //Bottles puzzle
-    sceneObjects.add(new UIElement(new PVector(980, 240), 249.3, 55, "Data/transparent.png"));
-    interactable = (InteractableObject)sceneObjects.get(3);
-    interactable.setLayer(-2);
+    sceneObjects.add(new UIElement(new PVector(970, 240), 0.7*347,0.7* 99, "Data/Bottles1.png","Data/Bottles1_Highlight.png"));//2
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(1,"Data/Bottles2.png","Data/Bottles2_Highlight.png");
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(2,"Data/Bottles3.png","Data/Bottles3_Highlight.png");
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(3,"Data/Bottles4.png","Data/Bottles4_Highlight.png");
+    interactable = (InteractableObject)sceneObjects.get(sceneObjects.size()-1);
+    interactable.setLayer(0);
     interactable.disableDragging();
     interactable.setClickable(true);
     interactable.setTargetScene(Levels.BOTTLE_PUZZLE);
 
-    sceneObjects.add(new Fire(new PVector(360, 365), 90, 90, "Data/Fire/", 4));
-    interactable = (InteractableObject)sceneObjects.get(4);
-    interactable.setLayer(12);
-    interactable.disableDragging();
-    interactable.setClickable(false);
-    fireObject = interactable;
-
-    /*sceneObjects.add(new UIElement(new PVector(width-300, height-120), 300, 120));
-     UIElement element = (UIElement)sceneObjects.get(5);
-     element.disableDragging();
-     element.setLayer(0);
-     element.setMessage(timer.getTimeString());
-     timerElement = element;*/
-
-
-    //Bottles puzzle
-    sceneObjects.add(new UIElement(new PVector(628, 0), 260, 430, "Data/transparent.png"));
-    interactable = (InteractableObject)sceneObjects.get(5);
-    interactable.setLayer(-10);
+    sceneObjects.add(new UIElement(new PVector(628, 0), 260, 430, "Data/transparent.png"));//3
+    interactable = (InteractableObject)sceneObjects.get(sceneObjects.size()-1);
+    interactable.setLayer(0);
     interactable.disableDragging();
     interactable.setClickable(true);
     interactable.setTargetScene(Levels.WINDOW_SCENE);
 
     //Read book
-    sceneObjects.add(new UIElement(new PVector(120, 165), 36, 15, "Data/RedBook.png", "Data/RedBook_Highlight.png"));
-    interactable = (InteractableObject)sceneObjects.get(6);
-    interactable.setLayer(10);
+    sceneObjects.add(new UIElement(new PVector(120, 165), 36, 15, "Data/RedBook.png", "Data/RedBook_Highlight.png"));//4
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(1, "Data/RedBook1.png", "Data/RedBook1_Highlight.png");
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(2, "Data/RedBook2.png", "Data/RedBook2_Highlight.png");
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(2, "Data/RedBook3.png", "Data/RedBook3_Highlight.png");
+    interactable = (InteractableObject)sceneObjects.get(sceneObjects.size()-1);
+    interactable.setLayer(0);
     interactable.disableDragging();
     interactable.setClickable(true);
     interactable.setTargetScene(Levels.READ_BOOK);
 
 
-    sceneObjects.add(new Lamp(new PVector(950, 0), 1.5* 30.3, 1.5* 100, "Data/Lamp.png", "Data/Lamp_outline.png"));
-    sceneObjects.add(new Lamp(new PVector(1050, -30), 1.5* 30.3, 1.5* 100, "Data/Lamp.png", "Data/Lamp_outline.png"));
-    sceneObjects.add(new Lamp(new PVector(1150, -60), 1.5* 30.3, 1.5* 100, "Data/Lamp.png", "Data/Lamp_outline.png"));
+    sceneObjects.add(new Lamp(new PVector(950, 0), 1.5* 30.3, 1.5* 100, "Data/Lamp.png", "Data/Lamp_outline.png"));//5
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(2, "Data/Lamp3.png", "Data/Lamp3_outline.png");
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(3, "Data/Lamp4.png", "Data/Lamp4_outline.png");
+    sceneObjects.add(new Lamp(new PVector(1050, -30), 1.5* 30.3, 1.5* 100, "Data/Lamp.png", "Data/Lamp_outline.png"));//6
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(2, "Data/Lamp3.png", "Data/Lamp3_outline.png");
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(3, "Data/Lamp4.png", "Data/Lamp4_outline.png");
+    sceneObjects.add(new Lamp(new PVector(1150, -60), 1.5* 30.3, 1.5* 100, "Data/Lamp.png", "Data/Lamp_outline.png"));//7
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(2, "Data/Lamp3.png", "Data/Lamp3_outline.png");
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(3, "Data/Lamp4.png", "Data/Lamp4_outline.png");
 
+    sceneObjects.add(new Painting(new PVector(500, 50), 0.5*74, 0.5* 117, "Data/Key_Painting1.png", "Data/Key_Painting1_outline.png"));//8
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(2, "Data/Key_Painting3.png", "Data/Key_Painting3_outline.png");
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(3, "Data/Key_Painting4.png", "Data/Key_Painting4_outline.png");
+    sceneObjects.add(new Painting(new PVector(530, 130), 0.5*37, 0.5* 66, "Data/Goat_Painting1.png", "Data/Goat_Painting1_outline.png"));//9
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(2, "Data/Goat_Painting3.png", "Data/Goat_Painting4_outline.png");
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(3, "Data/Goat_Painting4.png", "Data/Goat_Painting4_outline.png");
+    sceneObjects.add(new Painting(new PVector(560, 210), 0.5*75, 0.5* 119, "Data/Trophy_painting1.png", "Data/Trophy_painting1_outline.png"));//10
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(2, "Data/Trophy_painting3.png", "Data/Trophy_painting3_outline.png");
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(3, "Data/Trophy_painting4.png", "Data/Trophy_painting4_outline.png");
 
-    sceneObjects.add(new Painting(new PVector(500, 50), 0.5*74, 0.5* 117, "Data/Key_Painting1.png","Data/Key_Painting1_outline.png"));
-    sceneObjects.add(new Painting(new PVector(530, 130), 0.5*37, 0.5* 66, "Data/Goat_Painting1.png","Data/Goat_Painting1_outline.png"));
-    sceneObjects.add(new Painting(new PVector(560, 210), 0.5*75, 0.5* 119, "Data/Trophy_painting1.png","Data/Trophy_painting1_outline.png"));
+    sceneObjects.add(new Vase(new PVector(433, 470), 25, 50, "Data/vase_vector.png", "Data/vase_vector_outline.png"));//11
+    sceneObjects.get(sceneObjects.size()-1).setLayer(1);
 
-    sceneObjects.add(new UIElement(new PVector(50, 80), 0.3* 226, 0.3*222, "Data/Plant1.png","Data/Plant1_Outline.png"));
+    sceneObjects.add(new Fire(new PVector(360, 365), 90, 90, "Data/Fire/", 4));//12
+    interactable = (InteractableObject)sceneObjects.get(sceneObjects.size()-1);
+    interactable.setLayer(1);
+    interactable.disableDragging();
+    interactable.setClickable(false);
+    fireObject = interactable;
+
+    sceneObjects.add(new UIElement(new PVector(50, 90), 0.25* 226, 0.25*222, "Data/Plant1.png", "Data/Plant1_Outline.png"));//13
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(2, "Data/Plant3.png", "Data/Plant3_Outline.png");
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(3, "Data/Plant4.png", "Data/Plant4_Outline.png");
     interactable = (InteractableObject)sceneObjects.get(sceneObjects.size() - 1);
     interactable.setLayer(12);
     interactable.setClickable(false);
-    sceneObjects.add(new UIElement(new PVector(120, 80), 0.3* 226, 0.3*222, "Data/Plant1.png","Data/Plant1_Outline.png"));
+    sceneObjects.add(new UIElement(new PVector(120, 90), 0.25* 226, 0.25*222, "Data/Plant1.png", "Data/Plant1_Outline.png"));//144
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(2, "Data/Plant3.png", "Data/Plant3_Outline.png");
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(3, "Data/Plant4.png", "Data/Plant4_Outline.png");
     interactable = (InteractableObject)sceneObjects.get(sceneObjects.size() - 1);
     interactable.setLayer(12);
     interactable.setClickable(false);
-    sceneObjects.add(new UIElement(new PVector(190, 80), 0.3* 226, 0.3*222, "Data/Plant1.png","Data/Plant1_Outline.png"));
+    sceneObjects.add(new UIElement(new PVector(190, 90), 0.25* 226, 0.25*222, "Data/Plant1.png", "Data/Plant1_Outline.png"));//15
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(2, "Data/Plant3.png", "Data/Plant3_Outline.png");
+    sceneObjects.get(sceneObjects.size()-1).setStageImages(3, "Data/Plant4.png", "Data/Plant4_Outline.png");
     interactable = (InteractableObject)sceneObjects.get(sceneObjects.size() - 1);
     interactable.setLayer(12);
     interactable.setClickable(false);
@@ -243,47 +256,77 @@ class World {
     sceneObjects = new ArrayList<GameObject>();
     UIElement element;
 
-    sceneObjects.add(new UIElement(new PVector(width/3+60, height/2), 36, 36, "Data/number_1.png"));
-    element = (UIElement)sceneObjects.get(0);  
+    int positionStartX = 530;
+    int positionStartY = 300;
+    
+    int xOffset = 43;
+    int yOffset =43;
+
+    sceneObjects.add(new UIElement(new PVector(positionStartX, positionStartY), 40, 42, "Data/number_1.png"));//0
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);  
     //element.setMessage("1");
     element.setLayer(15);
     element.setValue(1);
-    sceneObjects.add(new UIElement(new PVector(width/3+120, height/2), 36, 36, "Data/number_2.png"));
-    element = (UIElement)sceneObjects.get(1);
+    sceneObjects.add(new UIElement(new PVector(positionStartX + xOffset, positionStartY), 40, 42, "Data/number_2.png"));//1
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
     element.setLayer(15);
     element.setValue(2);
-    sceneObjects.add(new UIElement(new PVector(width/3+180, height/2), 36, 36, "Data/number_3.png"));
-    element = (UIElement)sceneObjects.get(2);
+    sceneObjects.add(new UIElement(new PVector(positionStartX + 2*xOffset, positionStartY), 40, 42, "Data/number_3.png"));//2
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
     element.setLayer(15);
     element.setValue(3);
-    sceneObjects.add(new UIElement(new PVector(width/3+240, height/2), 36, 36, "Data/number_4.png"));
-    element = (UIElement)sceneObjects.get(3);
+    sceneObjects.add(new UIElement(new PVector(positionStartX + 3*xOffset, positionStartY), 40, 42, "Data/number_4.png"));//3
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
     element.setLayer(15);
     element.setValue(4);
+    sceneObjects.add(new UIElement(new PVector(positionStartX+0.5*yOffset, positionStartY-yOffset), 40, 42, "Data/number_5.png"));//4
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
+    element.setLayer(15);
+    element.setValue(5);
+    sceneObjects.add(new UIElement(new PVector(positionStartX+0.5*xOffset +xOffset, positionStartY-yOffset), 40, 42, "Data/number_6.png"));//5
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
+    element.setLayer(15);
+    element.setValue(6);
+    sceneObjects.add(new UIElement(new PVector(positionStartX+0.5*xOffset +2*xOffset, positionStartY-yOffset), 40, 42, "Data/number_7.png"));//6
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
+    element.setLayer(15);
+    element.setValue(7);
+    sceneObjects.add(new UIElement(new PVector(positionStartX+1*xOffset, positionStartY-2*yOffset), 40, 42, "Data/number_8.png"));//7
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
+    element.setLayer(15);
+    element.setValue(8);
+    sceneObjects.add(new UIElement(new PVector(positionStartX+1*xOffset+xOffset, positionStartY-2*yOffset), 40, 42, "Data/number_9.png"));//8
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
+    element.setLayer(15);
+    element.setValue(9);
+    sceneObjects.add(new UIElement(new PVector(positionStartX+1.5*xOffset, positionStartY-3*yOffset), 40, 42, "Data/number_0.png"));//9
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
+    element.setLayer(15);
+    element.setValue(0);
 
-    sceneObjects.add(new UIElement(new PVector(531, 490), 36, 36, "Data/transparent.png"));
-    element = (UIElement)sceneObjects.get(4);
+    sceneObjects.add(new UIElement(new PVector(562, 497), 40, 42, "Data/transparent.png"));//10
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
     element.disableDragging();
     element.setConbinationSlotIndex(0);
     element.setLayer(10);
-    sceneObjects.add(new UIElement(new PVector(531+36+9.6, 490), 36, 36, "Data/transparent.png"));
-    element = (UIElement)sceneObjects.get(5);
+    sceneObjects.add(new UIElement(new PVector(562+49, 497), 40, 42, "Data/transparent.png"));//11
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
     element.disableDragging();
     element.setConbinationSlotIndex(1);
     element.setLayer(10);
-    sceneObjects.add(new UIElement(new PVector(531+2*(36+9.6), 490), 36, 36, "Data/transparent.png"));
-    element = (UIElement)sceneObjects.get(6);
+    sceneObjects.add(new UIElement(new PVector(562+95, 497), 40, 42, "Data/transparent.png"));//12
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
     element.disableDragging();
     element.setConbinationSlotIndex(2);
     element.setLayer(10);
-    sceneObjects.add(new UIElement(new PVector(531+3*(36+9.6), 490), 36, 36, "Data/transparent.png"));
-    element = (UIElement)sceneObjects.get(7);
+    sceneObjects.add(new UIElement(new PVector(562+139, 497), 40, 42, "Data/transparent.png"));//13
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
     element.disableDragging();
     element.setConbinationSlotIndex(3);
     element.setLayer(10);
 
-    sceneObjects.add(new UIElement(new PVector(0, height-70), 174, 100, "Data/BackButton.png", "Data/BackButton_Hover.png"));
-    element = (UIElement)sceneObjects.get(8);
+    sceneObjects.add(new UIElement(new PVector(0, height-100), 174, 100, "Data/BackButton.png", "Data/BackButton_Hover.png"));//14
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
     element.disableDragging();
     element.setConbinationSlotIndex(3);
     element.setLayer(0);
@@ -293,28 +336,64 @@ class World {
     //setup what places the numbers can be placed int
     UIElement elementRef;
     elementRef = (UIElement)sceneObjects.get(0);
-    elementRef.addOverlapTargets(sceneObjects.get(4));
-    elementRef.addOverlapTargets(sceneObjects.get(5));
-    elementRef.addOverlapTargets(sceneObjects.get(6));
-    elementRef.addOverlapTargets(sceneObjects.get(7));
+    elementRef.addOverlapTargets(sceneObjects.get(10));
+    elementRef.addOverlapTargets(sceneObjects.get(11));
+    elementRef.addOverlapTargets(sceneObjects.get(12));
+    elementRef.addOverlapTargets(sceneObjects.get(13));
 
     elementRef = (UIElement)sceneObjects.get(1);
-    elementRef.addOverlapTargets(sceneObjects.get(4));
-    elementRef.addOverlapTargets(sceneObjects.get(5));
-    elementRef.addOverlapTargets(sceneObjects.get(6));
-    elementRef.addOverlapTargets(sceneObjects.get(7));
-
+    elementRef.addOverlapTargets(sceneObjects.get(10));
+    elementRef.addOverlapTargets(sceneObjects.get(11));
+    elementRef.addOverlapTargets(sceneObjects.get(12));
+    elementRef.addOverlapTargets(sceneObjects.get(13));
+    
     elementRef = (UIElement)sceneObjects.get(2);
-    elementRef.addOverlapTargets(sceneObjects.get(4));
-    elementRef.addOverlapTargets(sceneObjects.get(5));
-    elementRef.addOverlapTargets(sceneObjects.get(6));
-    elementRef.addOverlapTargets(sceneObjects.get(7));
+    elementRef.addOverlapTargets(sceneObjects.get(10));
+    elementRef.addOverlapTargets(sceneObjects.get(11));
+    elementRef.addOverlapTargets(sceneObjects.get(12));
+    elementRef.addOverlapTargets(sceneObjects.get(13));
 
     elementRef = (UIElement)sceneObjects.get(3);
-    elementRef.addOverlapTargets(sceneObjects.get(4));
-    elementRef.addOverlapTargets(sceneObjects.get(5));
-    elementRef.addOverlapTargets(sceneObjects.get(6));
-    elementRef.addOverlapTargets(sceneObjects.get(7));
+    elementRef.addOverlapTargets(sceneObjects.get(10));
+    elementRef.addOverlapTargets(sceneObjects.get(11));
+    elementRef.addOverlapTargets(sceneObjects.get(12));
+    elementRef.addOverlapTargets(sceneObjects.get(13));
+     elementRef = (UIElement)sceneObjects.get(4);
+    elementRef.addOverlapTargets(sceneObjects.get(10));
+    elementRef.addOverlapTargets(sceneObjects.get(11));
+    elementRef.addOverlapTargets(sceneObjects.get(12));
+    elementRef.addOverlapTargets(sceneObjects.get(13));
+    
+     elementRef = (UIElement)sceneObjects.get(5);
+    elementRef.addOverlapTargets(sceneObjects.get(10));
+    elementRef.addOverlapTargets(sceneObjects.get(11));
+    elementRef.addOverlapTargets(sceneObjects.get(12));
+    elementRef.addOverlapTargets(sceneObjects.get(13));
+    
+    
+     elementRef = (UIElement)sceneObjects.get(6);
+    elementRef.addOverlapTargets(sceneObjects.get(10));
+    elementRef.addOverlapTargets(sceneObjects.get(11));
+    elementRef.addOverlapTargets(sceneObjects.get(12));
+    elementRef.addOverlapTargets(sceneObjects.get(13));
+  
+     elementRef = (UIElement)sceneObjects.get(7);
+    elementRef.addOverlapTargets(sceneObjects.get(10));
+    elementRef.addOverlapTargets(sceneObjects.get(11));
+    elementRef.addOverlapTargets(sceneObjects.get(12));
+    elementRef.addOverlapTargets(sceneObjects.get(13));
+    
+     elementRef = (UIElement)sceneObjects.get(8);
+    elementRef.addOverlapTargets(sceneObjects.get(10));
+    elementRef.addOverlapTargets(sceneObjects.get(11));
+    elementRef.addOverlapTargets(sceneObjects.get(12));
+    elementRef.addOverlapTargets(sceneObjects.get(13));
+    
+     elementRef = (UIElement)sceneObjects.get(9);
+    elementRef.addOverlapTargets(sceneObjects.get(10));
+    elementRef.addOverlapTargets(sceneObjects.get(11));
+    elementRef.addOverlapTargets(sceneObjects.get(12));
+    elementRef.addOverlapTargets(sceneObjects.get(13));
 
     Collections.sort(sceneObjects);
     Scene scene = new Scene(sceneObjects);
@@ -331,72 +410,86 @@ class World {
     sceneObjects = new ArrayList<GameObject>();
     UIElement element;
 
-    float slotsStartPosition =250;
-    float offset = 0.4* 324;
+    float slotsStartPosition =175;
+    float offset = 0.4*324;
+    float sizeX =122;
+    float sizeY=144;
 
 
-    sceneObjects.add(new UIElement(new PVector(slotsStartPosition, 200), 0.3* 324, 0.3* 412, "Data/BottleILetter.png"));//0
+    sceneObjects.add(new UIElement(new PVector(slotsStartPosition, 200), sizeX, sizeY, "Data/LetterO.png"));//0
     element = (UIElement)sceneObjects.get(sceneObjects.size()-1);  
     element.setLayer(15);
     element.setValue(2);
     element.setRepresentNumber(false);
-    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+offset, 200), 0.3* 324, 0.3* 412, "Data/BottleFLetter.png"));//1
+    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+offset, 200), sizeX, sizeY, "Data/LetterB.png"));//1
     element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
     element.setLayer(15);
     element.setValue(1);
     element.setRepresentNumber(false);
-    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+2*offset, 200), 0.3* 324, 0.3* 412, "Data/bottleELetter.png"));//2
+    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+2*offset, 200), sizeX, sizeY, "Data/LetterE.png"));//2
     element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
     element.setLayer(15);
+    element.setValue(5);
+    element.setRepresentNumber(false);
+    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+3*offset, 200), sizeX, sizeY, "Data/LetterT.png"));//3
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
+    element.setLayer(20);
+    element.setValue(3);
+    element.setRepresentNumber(false);
+    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+4*offset, 200), sizeX, sizeY, "Data/LetterL.png"));//4
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
+    element.setLayer(20);
     element.setValue(4);
     element.setRepresentNumber(false);
-    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+3*offset, 200), 0.3* 324, 0.3* 412, "Data/BottleRLetter.png"));//3
+    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+5*offset, 200), sizeX, sizeY, "Data/LetterT2.png"));//5
     element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
     element.setLayer(20);
     element.setValue(3);
     element.setRepresentNumber(false);
-    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+4*offset, 200), 0.3* 324, 0.3* 412, "Data/bottleDLetter.png"));//4
+    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+6*offset, 200), sizeX, sizeY, "Data/LetterS.png"));//6
     element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
     element.setLayer(20);
-    element.setValue(3);
-    element.setRepresentNumber(false);
-    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+5*offset, 200), 0.3* 324, 0.3* 412, "Data/BottleALetter.png"));//5
-    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
-    element.setLayer(20);
-    element.setValue(3);
+    element.setValue(6);
     element.setRepresentNumber(false);
 
 
-    sceneObjects.add(new UIElement(new PVector(slotsStartPosition, 400), 0.3* 324, 0.3* 412));//6
+    sceneObjects.add(new UIElement(new PVector(slotsStartPosition, 380), sizeX, sizeY, "Data/Placeholder3.png"));//7
     element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
     element.disableDragging();
     element.setConbinationSlotIndex(0);
     element.setLayer(10);
-    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+offset, 400), 0.3* 324, 0.3* 412));//7
+    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+offset, 380), sizeX, sizeY, "Data/Placeholder3.png"));//8
     element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
     element.disableDragging();
     element.setConbinationSlotIndex(1);
     element.setLayer(10);
-    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+2*offset, 400), 0.3* 324, 0.3* 412));//8
+    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+2*offset, 380), sizeX, sizeY, "Data/Placeholder3.png"));//9
     element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
     element.disableDragging();
     element.setConbinationSlotIndex(2);
     element.setLayer(10);
-    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+3*offset, 400), 0.3* 324, 0.3* 412));//9
+    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+3*offset, 380), sizeX, sizeY, "Data/Placeholder3.png"));//10
     element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
     element.disableDragging();
     element.setConbinationSlotIndex(3);
     element.setLayer(10);
-    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+4*offset, 400), 0.3* 324, 0.3* 412));//10
+    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+4*offset, 380), sizeX, sizeY, "Data/Placeholder3.png"));//11
     element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
     element.disableDragging();
-    element.setConbinationSlotIndex(3);
+    element.setConbinationSlotIndex(4);
     element.setLayer(10);
-    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+2* 324, 400), 0.3* 324, 0.3* 412));//11
+    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+5*offset, 380), sizeX, sizeY, "Data/Placeholder3.png"));//12
     element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
     element.disableDragging();
-    element.setConbinationSlotIndex(3);
+    element.setConbinationSlotIndex(5);
     element.setLayer(10);
+    sceneObjects.add(new UIElement(new PVector(slotsStartPosition+6* offset, 380), sizeX, sizeY, "Data/Placeholder3.png"));//13
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
+    element.disableDragging();
+    element.setConbinationSlotIndex(6);
+    element.setLayer(10);
+
+
 
     ///Square
     sceneObjects.add(new UIElement(new PVector(116, 178), 1048, 364, "Data/Bottles_scene.png"));
@@ -406,55 +499,68 @@ class World {
 
     UIElement elementRef;
     elementRef = (UIElement)sceneObjects.get(0);
-    elementRef.addOverlapTargets(sceneObjects.get(6));
     elementRef.addOverlapTargets(sceneObjects.get(7));
     elementRef.addOverlapTargets(sceneObjects.get(8));
     elementRef.addOverlapTargets(sceneObjects.get(9));
     elementRef.addOverlapTargets(sceneObjects.get(10));
     elementRef.addOverlapTargets(sceneObjects.get(11));
-    
-    
-    elementRef = (UIElement)sceneObjects.get(1);
-    elementRef.addOverlapTargets(sceneObjects.get(6));
-    elementRef.addOverlapTargets(sceneObjects.get(7));
-    elementRef.addOverlapTargets(sceneObjects.get(8));
-    elementRef.addOverlapTargets(sceneObjects.get(9));
-    elementRef.addOverlapTargets(sceneObjects.get(10));
-    elementRef.addOverlapTargets(sceneObjects.get(11));
-    
-    elementRef = (UIElement)sceneObjects.get(2);
-    elementRef.addOverlapTargets(sceneObjects.get(6));
-    elementRef.addOverlapTargets(sceneObjects.get(7));
-    elementRef.addOverlapTargets(sceneObjects.get(8));
-    elementRef.addOverlapTargets(sceneObjects.get(9));
-    elementRef.addOverlapTargets(sceneObjects.get(10));
-    elementRef.addOverlapTargets(sceneObjects.get(11));
-    
-    elementRef = (UIElement)sceneObjects.get(3);
-    elementRef.addOverlapTargets(sceneObjects.get(6));
-    elementRef.addOverlapTargets(sceneObjects.get(7));
-    elementRef.addOverlapTargets(sceneObjects.get(8));
-    elementRef.addOverlapTargets(sceneObjects.get(9));
-    elementRef.addOverlapTargets(sceneObjects.get(10));
-    elementRef.addOverlapTargets(sceneObjects.get(11));
-    
-    elementRef = (UIElement)sceneObjects.get(4);
-    elementRef.addOverlapTargets(sceneObjects.get(6));
-    elementRef.addOverlapTargets(sceneObjects.get(7));
-    elementRef.addOverlapTargets(sceneObjects.get(8));
-    elementRef.addOverlapTargets(sceneObjects.get(9));
-    elementRef.addOverlapTargets(sceneObjects.get(10));
-    elementRef.addOverlapTargets(sceneObjects.get(11));
-    
-    elementRef = (UIElement)sceneObjects.get(5);
-    elementRef.addOverlapTargets(sceneObjects.get(6));
-    elementRef.addOverlapTargets(sceneObjects.get(7));
-    elementRef.addOverlapTargets(sceneObjects.get(8));
-    elementRef.addOverlapTargets(sceneObjects.get(9));
-    elementRef.addOverlapTargets(sceneObjects.get(10));
-    elementRef.addOverlapTargets(sceneObjects.get(11));
+    elementRef.addOverlapTargets(sceneObjects.get(12));
+    elementRef.addOverlapTargets(sceneObjects.get(13));
 
- 
+    elementRef = (UIElement)sceneObjects.get(1);
+    elementRef.addOverlapTargets(sceneObjects.get(7));
+    elementRef.addOverlapTargets(sceneObjects.get(8));
+    elementRef.addOverlapTargets(sceneObjects.get(9));
+    elementRef.addOverlapTargets(sceneObjects.get(10));
+    elementRef.addOverlapTargets(sceneObjects.get(11));
+    elementRef.addOverlapTargets(sceneObjects.get(12));
+    elementRef.addOverlapTargets(sceneObjects.get(13));
+
+    elementRef = (UIElement)sceneObjects.get(2);
+    elementRef.addOverlapTargets(sceneObjects.get(7));
+    elementRef.addOverlapTargets(sceneObjects.get(8));
+    elementRef.addOverlapTargets(sceneObjects.get(9));
+    elementRef.addOverlapTargets(sceneObjects.get(10));
+    elementRef.addOverlapTargets(sceneObjects.get(11));
+    elementRef.addOverlapTargets(sceneObjects.get(12));
+    elementRef.addOverlapTargets(sceneObjects.get(13));
+
+    elementRef = (UIElement)sceneObjects.get(3);
+    elementRef.addOverlapTargets(sceneObjects.get(7));
+    elementRef.addOverlapTargets(sceneObjects.get(8));
+    elementRef.addOverlapTargets(sceneObjects.get(9));
+    elementRef.addOverlapTargets(sceneObjects.get(10));
+    elementRef.addOverlapTargets(sceneObjects.get(11));
+    elementRef.addOverlapTargets(sceneObjects.get(12));
+    elementRef.addOverlapTargets(sceneObjects.get(13));
+
+    elementRef = (UIElement)sceneObjects.get(4);
+    elementRef.addOverlapTargets(sceneObjects.get(7));
+    elementRef.addOverlapTargets(sceneObjects.get(8));
+    elementRef.addOverlapTargets(sceneObjects.get(9));
+    elementRef.addOverlapTargets(sceneObjects.get(10));
+    elementRef.addOverlapTargets(sceneObjects.get(11));
+    elementRef.addOverlapTargets(sceneObjects.get(12));
+    elementRef.addOverlapTargets(sceneObjects.get(13));
+
+    elementRef = (UIElement)sceneObjects.get(5);
+    elementRef.addOverlapTargets(sceneObjects.get(7));
+    elementRef.addOverlapTargets(sceneObjects.get(8));
+    elementRef.addOverlapTargets(sceneObjects.get(9));
+    elementRef.addOverlapTargets(sceneObjects.get(10));
+    elementRef.addOverlapTargets(sceneObjects.get(11));
+    elementRef.addOverlapTargets(sceneObjects.get(12));
+    elementRef.addOverlapTargets(sceneObjects.get(13));
+
+    elementRef = (UIElement)sceneObjects.get(6);
+    elementRef.addOverlapTargets(sceneObjects.get(7));
+    elementRef.addOverlapTargets(sceneObjects.get(8));
+    elementRef.addOverlapTargets(sceneObjects.get(9));
+    elementRef.addOverlapTargets(sceneObjects.get(10));
+    elementRef.addOverlapTargets(sceneObjects.get(11));
+    elementRef.addOverlapTargets(sceneObjects.get(12));
+    elementRef.addOverlapTargets(sceneObjects.get(13));
+
 
 
     Collections.sort(sceneObjects); 
@@ -492,7 +598,7 @@ class World {
     sceneObjects = new ArrayList<GameObject>();
     UIElement element;
 
-    sceneObjects.add(new UIElement(new PVector(0, height-80), 174, 100, "Data/BackButton.png", "Data/BackButton_Hover.png"));
+    sceneObjects.add(new UIElement(new PVector(0, height-100), 174, 100, "Data/BackButton.png", "Data/BackButton_Hover.png"));
     sceneObjects.get(0).setLayer(10);
     element =  (UIElement)sceneObjects.get(0);
     element.disableDragging();
@@ -566,35 +672,39 @@ class World {
   void onMadnessLevelChange(int _madnessLevel) { 
     if (_madnessLevel != madnessLevel) {
       madnessLevel = _madnessLevel;
-      //this.madnessLevel = _madnessLevel;
       switch(madnessLevel) {
       case 0:
         break;
       case 1:
-        println("MadnessChanged");
         scenesData.get(Levels.LIVING_ROOM).setBackground("Data/CrazyScene2.png");
+        for (GameObject object : scenesData.get(Levels.LIVING_ROOM).sceneObjects) {
+          object.SetStage(1);
+        }
+        scenesData.get(Levels.WINDOW_SCENE).setBackground("Data/window_Scene2.png");
+        scenesData.get(Levels.BOTTLE_PUZZLE).setBackground("Data/Stage_2_Darken.png");
         break;
       case 2:
+
         scenesData.get(Levels.LIVING_ROOM).setBackground("Data/CrazyScene3.png");
+        for (GameObject object : scenesData.get(Levels.LIVING_ROOM).sceneObjects) {
+          object.SetStage(2);
+        }
+        scenesData.get(Levels.WINDOW_SCENE).setBackground("Data/window_Scene3.png");
+        scenesData.get(Levels.BOTTLE_PUZZLE).setBackground("Data/Stage_3_Darken.png");
+
         break;
       case 3:
         scenesData.get(Levels.LIVING_ROOM).setBackground("Data/CrazyScene4.png");
+        for (GameObject object : scenesData.get(Levels.LIVING_ROOM).sceneObjects) {
+          object.SetStage(3);
+        }
+        scenesData.get(Levels.WINDOW_SCENE).setBackground("Data/window_Scene4.png");
+        scenesData.get(Levels.BOTTLE_PUZZLE).setBackground("Data/Stage_4_Darken.png");
         break;
       default: 
-        //madnessLevel++;
         break;
       }
     }
-    //scenesData.get(Levels.MAIN_MENU).setBackground("Data/CrazyScene2.png");
-  }
-
-  void someTimePassed() {
-    /*if(!scenesData.get(Levels.LIVING_ROOM).justChanged){
-     //madnessLevel++;
-     println(madnessLevel);
-     }
-     scenesData.get(Levels.LIVING_ROOM).justChanged =false;
-     ;*/
   }
 
   void PuzzleSolved() {
@@ -605,7 +715,6 @@ class World {
 
       backgroundSound.pause();
       backgroundSound.rewind();
-      //backgroundSound.stop();
     }
     catch(Exception ex) {
     }
@@ -649,7 +758,6 @@ class World {
       }
     }
   }
-
 
   Scene getCurrentScene() {
     return null;

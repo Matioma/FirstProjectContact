@@ -46,7 +46,7 @@ class UIElement extends InteractableObject {
     push();
     fill(50);
     textFont(FontData.addedFonts.get("Helvetica"));
-    fill(0, 102, 153, 204);
+    fill(#FFD6D6);
     textAlign(CENTER, CENTER);
     textSize(FontData.FontSize);
     textLeading(FontData.FontSize);

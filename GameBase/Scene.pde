@@ -41,7 +41,7 @@ class Scene {
     pop();
 
 
-    alpha -=5;
+    alpha -=8;
   }
 
   void debugColliders(boolean debug) {

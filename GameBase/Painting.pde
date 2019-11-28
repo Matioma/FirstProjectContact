@@ -47,4 +47,9 @@ class Painting extends AnimatedObject {
       finishAnimation();
     }
   }
+  
+  @Override void finishAnimation(){
+    super.finishAnimation();
+    animationTimePassed = 0;
+  }
 }

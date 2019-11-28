@@ -11,11 +11,11 @@ World world;
 SoundFile file1;
 SoundFile file2;
 
-int[] password = {3, 1, 2, 4};
-int[] fireWord = {1, 2, 3, 4};
+int[] password = {5, 9, 3, 1};
+int[] fireWord = {1, 2, 3, 3, 4, 5, 6};
 
-int[] currentlyPlacedValues = new int[4];
-int[] currentlyFireValues = new int[4];
+int[] currentlyPlacedValues = new int[7];
+int[] currentlyFireValues = new int[7];
 
 Timer timer = new Timer();
 Time time;
@@ -31,7 +31,8 @@ ArrayList<AudioPlayer> actorSoundFiles = new ArrayList<AudioPlayer>();
 
 void setup() {
 
-  size (1280, 720);
+  size (1280, 720,P2D);
+  
   minim = new Minim(this);
   loadSounds();
   loadActorSounds();
@@ -41,6 +42,7 @@ void setup() {
   world = new World();
   time = new Time();
   world.setBackgroundMusic("MainMenuBgMusic");
+  frameRate(30);
 }
 
 void draw() {
@@ -52,6 +54,7 @@ void draw() {
   world.display();
 
   time.lastFrameDeltaTime = time.getDeltaTime();
+  println(time.lastFrameDeltaTime);
 }
 
 void mousePressed() {

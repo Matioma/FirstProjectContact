@@ -64,9 +64,9 @@ abstract class InteractableObject extends GameObject implements IDisplayable, II
   void displayObject() {
     if (textureToDisplay!=null) {
       push();
-      translate(position.x, position.y);
+      translate(position.x+imgWidth/2, position.y+imgHeight/2);
       rotate(radians(rotation.x));
-      translate(-position.x, -position.y);
+      translate(-position.x-imgWidth/2, -position.y-imgHeight/2);
       image(textureToDisplay, position.x, position.y, imgWidth, imgHeight);
       pop();
     } else {
