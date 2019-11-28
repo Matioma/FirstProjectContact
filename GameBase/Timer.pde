@@ -1,6 +1,6 @@
 public class Time {
-  float lastFrameTime;
-  float lastFrameDeltaTime =0;
+  double lastFrameTime;
+  double lastFrameDeltaTime =0;
 
   Time() {
     lastFrameTime = millis();
@@ -10,8 +10,8 @@ public class Time {
     lastFrameTime = millis();
   }
 
-  float getDeltaTime() {
-    return (millis()-lastFrameTime)/1000;
+  double getDeltaTime() {
+    return (  millis()-lastFrameTime)/1000;
   }
 }
 

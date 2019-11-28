@@ -42,19 +42,16 @@ void setup() {
   world = new World();
   time = new Time();
   world.setBackgroundMusic("MainMenuBgMusic");
-  frameRate(30);
+  frameRate(60);
 }
 
 void draw() {
-
-  //fill(0,0,0,5);
-  time.update();
   background(0);
   world.update();
   world.display();
 
   time.lastFrameDeltaTime = time.getDeltaTime();
-  println(time.lastFrameDeltaTime);
+  time.update();
 }
 
 void mousePressed() {

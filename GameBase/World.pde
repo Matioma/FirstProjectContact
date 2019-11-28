@@ -8,7 +8,8 @@ enum Levels {
     SAFE_CLOSED, 
     SAFE_OPENED, 
     WINDOW_SCENE, 
-    DEFEAT
+    DEFEAT,
+    VICTORY_SCENE
 };
 
 class World {
@@ -46,6 +47,7 @@ class World {
     setupWindow();
     setupDefeatScene();
     setupReadBook();
+    setupVictoryScene();
   }
 
   void update() {
@@ -578,10 +580,13 @@ class World {
     sceneObjects = new ArrayList<GameObject>();
     UIElement element;
 
-    sceneObjects.add(new UIElement(new PVector(622.6, 533.3), 46.6, 79.3, "Data/transparent.png"));
-    sceneObjects.get(0).setLayer(1);
-    element =  (UIElement)sceneObjects.get(0);
+    sceneObjects.add(new UIElement(new PVector(610, 520), 46.6, 79.3, "Data/transparent.png"));
+    element = (UIElement)sceneObjects.get(sceneObjects.size()-1);
+    element.setLayer(0);
     element.disableDragging();
+    element.setClickable(true);
+    element.setTargetScene(Levels.VICTORY_SCENE);
+    
 
     Collections.sort(sceneObjects); 
 
@@ -590,6 +595,7 @@ class World {
     scenes.add(scene);
 
     scenesData.put(Levels.SAFE_OPENED, scene);
+    
   }
 
 
@@ -625,6 +631,14 @@ class World {
     Scene scene = new Scene(sceneObjects);
     scene.setBackground("Data/Game_Over.png");
     scenes.add(scene);
+    
+    
+     sceneObjects.add(new UIElement(new PVector(420, height-265), 450, 100, "Data/transparent.png"));
+    sceneObjects.get(0).setLayer(10);
+    element =  (UIElement)sceneObjects.get(0);
+    element.disableDragging();
+    element.setClickable(false);
+    element.setTargetScene(Levels.LIVING_ROOM);
 
     scenesData.put(Levels.DEFEAT, scene);
   }
@@ -647,6 +661,25 @@ class World {
     scenes.add(scene);
 
     scenesData.put(Levels.READ_BOOK, scene);
+  }
+  
+   void setupVictoryScene() {
+    sceneObjects = new ArrayList<GameObject>();
+    UIElement element;
+
+    sceneObjects.add(new UIElement(new PVector(width/4, height/4), width/2, height/2, "Data/Book_scene.png"));
+    sceneObjects.get(0).setLayer(1);
+    element =  (UIElement)sceneObjects.get(0);
+    element.disableDragging();
+
+
+    Collections.sort(sceneObjects); 
+
+    Scene scene = new Scene(sceneObjects);
+    //scene.setBackground("Data/LivingRoom_Dark.png");
+    scenes.add(scene);
+
+    scenesData.put(Levels.VICTORY_SCENE, scene);
   }
 
 

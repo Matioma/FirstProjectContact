@@ -44,6 +44,12 @@ class PlayerController {
         world.OpenScene(Levels.LIVING_ROOM);
       }
     }
+    if (world.currentSceneKey ==Levels.DEFEAT) {
+      if (pointRect(mouseX, mouseY, 420, height-265, 450, 100)) {
+        Restart();
+        world.OpenScene(Levels.LIVING_ROOM);
+      }
+    }
 
     if (interactedObject ==null) {
       interactedObject = worldRef.getHoveredObject();
