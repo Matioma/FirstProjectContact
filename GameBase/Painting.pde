@@ -26,14 +26,9 @@ class Painting extends AnimatedObject {
   }
   @Override void onClick() {
     startAnimation();
-    //pressedAlready=true;
   }
 
   void rotatePainting() {
-    /*if (pressedAlready) {
-     rotation.x = 30* sin(2*PI*animationTimePassed);
-     }*/
-    //displayObject();  
     push();
     if (!pressedAlready) {
       translate(position.x + imgWidth/2, position.y + imgHeight/2);
